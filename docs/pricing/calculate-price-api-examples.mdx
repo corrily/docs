@@ -1,0 +1,211 @@
+---
+title: "Calculate price API examples"
+description: "Code examples that demonstrate how Corrily's calculate price API is commonly used."
+---
+
+## Calculate price from server-detected IP address
+
+```js Node.js (Express)
+const express = require('express');
+const app = express();
+// Any HTTPS request library that can POST should work.
+const axios = require('axios');
+const uuidv4 = require('uuid').v4;
+
+app.get('/', async (request, response) => {
+   const user_id = uuidv4();
+ // Assuming x-forwarded-for is properly configured, this header
+ // is an easy way to extract the client's IP address.
+ if (!request.headers['x-forwarded-for']) {
+   response.json({
+   message: 'Error: X-Forwarded-For not found'
+ });
+ return;
+ }
+ const ip = request.headers['x-forwarded-for'].split(',')[0];
+ const result = await axios({
+   // Make sure to POST the request, not GET.
+ method: 'POST',
+ headers: {
+   // Make sure the payload is JSON, not form encoded.
+ 'Content-Type': 'application/json',
+ // See docs.corrily.com/setup
+ api_key: 'b82fd0fa-2a1b-4226-b6c0-22884ae97f84'
+ },
+ data: {
+   // See docs.corrily.com/setup
+ products: ['monthly', 'annual'],
+ ip,
+ user_id
+ },
+ url: 'https://client.corrily.com/v1/prices'
+ });
+ return response.json(result.data);
+});
+
+app.listen(8080, () => {
+   console.log(\"Go to the homepage to see Corrily's JSON response\");
+});
+```
+
+## Calculate price from client's IP address
+
+<Warning>
+
+<h3>Only works with client-side languages</h3>
+
+Corrily can only infer the IP address from the request when the request comes directly from the client device. In other words, this use case won't work with server-side languages.
+
+</Warning>
+
+```js JavaScript
+const headers = new Headers();
+// See docs.corrily.com/setup
+headers.append("api_key", "b82fd0fa-2a1b-4226-b6c0-22884ae97f84");
+// Make sure the payload is JSON, not form encoded.
+headers.append("Content-Type", "application/json");
+
+// https://stackoverflow.com/a/2117523
+function uuidv4() {
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+    (
+      c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16)
+  );
+}
+
+let data = {
+  user_id: uuidv4(),
+  get_ip_from_request: true,
+  // See docs.corrily.com/setup
+  products: ["monthly", "annual"],
+};
+
+// Make sure the payload is JSON, not form encoded.
+data = JSON.stringify(data);
+
+const options = {
+  // Make sure to POST the request, not GET.
+  method: "POST",
+  headers: headers,
+  body: data,
+  redirect: "follow",
+};
+
+fetch("https://client.corrily.com/v1/prices", options)
+  .then((response) => response.json())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+## Calculate price from country code
+
+```python Python
+# Any HTTPS request library that can POST should work.
+import requests
+import random
+import json
+import uuid
+
+url = 'https://client.corrily.com/v1/prices'
+
+headers = {
+   # Make sure that the payload is set to JSON, not form encoded.
+ 'Content-Type': 'application/json',
+ # See docs.corrily.com/setup
+ 'api_key': 'b82fd0fa-2a1b-4226-b6c0-22884ae97f84'
+}
+
+data = {
+   'user_id': str(uuid.uuid4()),
+ # See docs.corrily.com/setup
+ 'products': [
+   'monthly',
+ 'annual'
+ ],
+ # When you omit an IP address and provide a country code,
+ # Corrily generates a price for the given country.
+ 'country': 'JP'
+}
+
+# Make sure that the payload is set to JSON, not form encoded.
+data = json.dumps(data)
+# Make sure to POST the request, not GET.
+response = requests.request('POST', url, headers=headers, data=data)
+print(json.dumps(json.loads(response.text), indent=4))
+```
+
+```js JavaScript
+const headers = new Headers();
+// See docs.corrily.com/setup
+headers.append("api_key", "b82fd0fa-2a1b-4226-b6c0-22884ae97f84");
+// Make sure the payload is JSON, not form encoded.
+headers.append("Content-Type", "application/json");
+
+// https://stackoverflow.com/a/2117523
+function uuidv4() {
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+    (
+      c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16)
+  );
+}
+
+let data = {
+  user_id: uuidv4(),
+  // When you omit an IP address and provide a country code,
+  // Corrily generates a price for the given country.
+  country: "JP",
+  // See docs.corrily.com/setup
+  products: ["monthly", "annual"],
+};
+
+// Make sure the payload is JSON, not form encoded.
+data = JSON.stringify(data);
+
+const options = {
+  // Make sure to POST the request, not GET.
+  method: "POST",
+  headers: headers,
+  body: data,
+  redirect: "follow",
+};
+
+fetch("https://client.corrily.com/v1/prices", options)
+  .then((response) => response.json())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+```js Node.js
+// Any HTTPS request library that can POST should work.
+const axios = require("axios");
+const uuidv4 = require("uuid").v4;
+
+async function calculatePrice() {
+  const result = await axios({
+    // Make sure to POST the request, not GET.
+    method: "POST",
+    headers: {
+      // Make sure the payload is JSON, ot form encoded.
+      "Content-Type": "application/json",
+      // See docs.corrily.com/setup
+      api_key: "b82fd0fa-2a1b-4226-b6c0-22884ae97f84",
+    },
+    data: {
+      // See docs.corrily.com/setup
+      products: ["monthly", "annual"],
+      // When you omit an IP address and provide a country code,
+      // Corrily generates a price for the given country.
+      country: "JP",
+      user_id: uuidv4(),
+    },
+    url: "https://client.corrily.com/v1/prices",
+  });
+  console.log(result.data);
+}
+
+calculatePrice();
+```

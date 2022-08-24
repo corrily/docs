@@ -1,0 +1,20 @@
+---
+title: "User IDs"
+---
+
+One of the first things you need to do before using Corrily is to decide on a long-term system for identifying users. Without stable user identifiers (IDs), Corrily will not be able to learn from the results of the price experimentation. In other words, Corrily needs user IDs so that it can associate the following events together:
+
+- The price that Corrily generated for this user (and you subsequently displayed to the user)
+- Whether or not the user subscribed to your service, purchased an item, and so on
+
+## Types of IDs
+
+### Custom IDs
+
+If your system uses any kind of stable, long-term ID system, such as UUIDs, you can provide that ID to Corrily.
+
+See Segment's description of [User ID](https://segment.com/docs/connections/spec/identify/#user-id) for more general discussion of this concept
+
+### IP addresses
+
+You can use IPv4 or IPv6 addresses to represent users. If you call Corrily's API endpoints directly from a client device, Corrily can derive the user's IP from the API request.

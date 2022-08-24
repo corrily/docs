@@ -1,0 +1,21 @@
+---
+title: "Handling Anonymous Users"
+---
+
+Corrily supports anonymous users who might one day register and get a stable user_id.
+
+In general, converted users should always see the same price they saw on their first visit, before sign up.
+
+The flow for anonymous users will require you to send the user’s IP in the request payload or header. Corrily will remember the price, displayed to the given IP, and will stick the registered user to this price on the first API call where both `ip` and `user_id` fields are present.
+
+**How the flow works**
+
+1. For anonymous users send an `ip` without any `user_id`:
+   `{“ip”: “XXX.XXX.XXX.XXX”} -> price1`
+2. The `ip` is now tied to the above price. When a user converts and their `user_id` is known, send both their `ip` and `user_id`:
+   `{“ip”: “XXX.XXX.XXX.XXX”, “user_id”: “user1”} -> price1`
+3. After the above call, the user will be tied to `price1`. Requests with only `user_id` will now always be tied to the same price and any anonymous users visiting with the same `ip` likewise.
+
+**Backfilled user case**
+
+In the case of backfilled old users. Users will see the price assigned to them. However, if they happen to visit the page anonymously, they might see another price until they log themselves in.

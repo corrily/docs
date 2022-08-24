@@ -1,0 +1,77 @@
+---
+title: "Set user characteristics"
+description: "Inform Corrily of rarely changing user characteristics that it should take into consideration when creating an optimized price for this customer."
+api: "POST https://client.corrily.com/v1/identify"
+---
+
+See [User characteristics](../users/user-characteristics).
+
+## Body Params
+
+<Param body="features" required type="object">
+  An object containing arbitrary key-value pairs that represent characteristics
+  of this user which may affect their optimal price. The keys can be any valid
+  JSON key. The values can be strings, integers, or floats.
+</Param>
+
+<Param body="user_id" type="string" required>
+  A [User ID](../users/user-ids).
+</Param>
+
+## Response
+
+<ResponseField name="status" type="string" />
+
+<RequestExample>
+
+```bash Bash
+curl --request POST \
+     --url https://client.corrily.com/v1/identify \
+     --header 'Accept: application/json' \
+     --header 'Content-Type: application/json' \
+     --data '{"user_id":"string"}'
+```
+
+```js Node
+const fetch = require("node-fetch");
+
+const url = "https://client.corrily.com/v1/identify";
+const options = {
+  method: "POST",
+  headers: { Accept: "application/json", "Content-Type": "application/json" },
+  body: JSON.stringify({ user_id: "string" }),
+};
+
+fetch(url, options)
+  .then((res) => res.json())
+  .then((json) => console.log(json))
+  .catch((err) => console.error("error:" + err));
+```
+
+```python Python
+import requests
+
+url = "https://client.corrily.com/v1/identify"
+
+payload = {"user_id": "string"}
+headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+
+print(response.text)
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Example
+{
+  "status": "ok"
+}
+```
+
+</ResponseExample>

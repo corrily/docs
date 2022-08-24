@@ -1,0 +1,92 @@
+---
+title: "Get subscription"
+description: "Retrieve the details of a single subscription for a single customer."
+api: "GET https://client.corrily.com/v1/subscriptions/{user_id}/{origin}/{origin_id}"
+---
+
+<Warning>
+  <h2>Custom payment gateway integrations only</h2>
+
+You do not need to use this endpoint if you have [granted Corrily automated access](../payment-gateways/integration-guide#recommended-provide-automated-access-of-subscription-and-charge-events) to your payment gateway's subscription and charge events.
+
+</Warning>
+
+## Path Params
+
+<Param path="origin" type="string" required>
+
+The payment gateway that handled the subscription. Accepted values: `stripe`,
+`paypal`, `chargebee`
+
+</Param>
+
+<Param path="origin_id" type="string" required>
+  A unique identifier for the subscription. This can be the ID that the payment
+  gateway assigned to the subscription.
+</Param>
+
+<Param path="user_id" type="string" required>
+
+The [User ID](../users/user-characteristics) that you provided when you
+[created the subscription](./create-subscription).
+
+</Param>
+
+<ResponseExample>
+
+```json Example
+{
+  "success": true,
+  "subscription": {
+    "corrily_product_id2": 122,
+    "latest_event_id": "corrily_evt_1628549872",
+    "latest_event_timestamp": 1628549872,
+    "org_id": 97,
+    "origin": "stripe",
+    "origin_id": "origin789",
+    "type": "subscription",
+    "created": 1628548983,
+    "interval": "month",
+    "interval_count": 1,
+    "status": "active",
+    "user_id": "user123"
+  }
+}
+```
+
+</ResponseExample>
+
+<RequestExample>
+
+```bash Bash
+curl --request GET \
+     --url https://client.corrily.com/v1/subscriptions/user_id/origin/origin_id \
+     --header 'Accept: application/json'
+```
+
+```js Node
+const fetch = require("node-fetch");
+
+const url =
+  "https://client.corrily.com/v1/subscriptions/user_id/origin/origin_id";
+const options = { method: "GET", headers: { Accept: "application/json" } };
+
+fetch(url, options)
+  .then((res) => res.json())
+  .then((json) => console.log(json))
+  .catch((err) => console.error("error:" + err));
+```
+
+```python Python
+import requests
+
+url = "https://client.corrily.com/v1/subscriptions/user_id/origin/origin_id"
+
+headers = {"Accept": "application/json"}
+
+response = requests.get(url, headers=headers)
+
+print(response.text)
+```
+
+</RequestExample>

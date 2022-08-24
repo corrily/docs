@@ -1,0 +1,14 @@
+---
+title: "Overview"
+description: "A general explanation of why Corrily needs to integrate with your payment gateways if you're doing price optimization."
+---
+
+Recall that one of Corrily's goal is to help you calculate optimal prices for your customers (the other one is to help you localize your prices). In order to achieve the price optimization goal, Corrily needs to know the outcome of your customer interactions. In other words, after you [calculate a price](../api-reference/calculate-price) and display that price to a customer, Corrily needs to know whether that customer abandoned or converted. Without this data, Corrily cannot determine whether its experimental prices were optimal.
+
+## Providing automated access of payment gateway events
+
+The easiest way to provide this information to Corrily is to set up a [webhook](https://en.wikipedia.org/wiki/Webhook) between your payment gateway and Corrily. When a subscription or charge event occurs, your payment gateway automatically notifies Corrily. See the [Provide automated access of subscription and charge events](./integration-guide#recommended-provide-automated-access-of-subscription-and-charge-events) section of the [Payment gateway integration guide](./integration-guide) to learn how to get started. With some payment gateways, such as Stripe, it's a 2-click process.
+
+## Manually notifying Corrily of subscription and charge events
+
+If for whatever reason you cannot or do not want to set up a direct webhook between your payment gateway and Corrily, you can use Corrily's `/subscriptions` and `/charges` REST API endpoints instead. See the [Manually notify Corrily of subscription and charge events](./integration-guide#manually-notify-corrily-of-subscription-and-charge-events) for more guidance on the general process and the [Sample app guide](./sample-app-guide) for a demonstration of this workflow.

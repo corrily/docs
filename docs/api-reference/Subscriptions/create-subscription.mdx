@@ -1,0 +1,208 @@
+---
+title: "Create subscription"
+description: "Notify Corrily that one of your customers has started a subscription."
+api: "POST https://client.corrily.com/v1/subscriptions"
+---
+
+<Warning>
+  <h3>Custom payment gateway integrations only</h3>
+
+You do not need to use this endpoint if you have [granted Corrily automated access](../payment-gateways/integration-guide#recommended-provide-automated-access-of-subscription-and-charge-events) to your payment gateway's subscription and charge events.
+
+</Warning>
+
+## Body Params
+
+<Param body="amount" type="float" required>
+  The amount (price) of the subscription.
+</Param>
+
+<Param body="country" type="string">
+  Users's two-letter ISO3166 country code.
+</Param>
+
+<Param body="created" type="int32" required>
+  A 10-digit (seconds) [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time)
+  indicating when the subscription was created. This timestamp should represent
+  when the subscription was initialized, regardless of the status of the
+  subscription during the initialization. It's rare to need to update created
+  after initially setting it.
+</Param>
+
+<Param body="currency" type="string" required>
+  The three-letter ([ISO
+  4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes)) currency code.
+</Param>
+
+<Param body="origin" type="string" required>
+  The payment gateway that handled the subscription. Accepted values: `stripe`,
+  `paypal`, `chargebee`
+</Param>
+
+<Param body="origin_id" type="string" required>
+  A unique identifier for the subscription. This can be the ID that the payment
+  gateway assigned to the subscription.
+</Param>
+
+<Param body="product" type="string" required>
+  A product ID string or a payment gateway integration object. Product IDs are
+  created by Corrily when you set up your Corrily account. Email
+  support@corrily.com if you don't know them. See the response of the [calculate
+  price](../calculate-price) endpoint for an example of the structure of
+  integration objects.
+</Param>
+
+<Param body="status" type="string" required>
+  The status of the subscription. Accepted values: `pending`, `trialing`,
+  `active`, `canceled`
+</Param>
+
+<Param body="user_id" type="string" required>
+  A User ID.
+</Param>
+
+<Param body="cancel_at" type="int32">
+  A 10-digit (seconds) [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time)
+  indicating when the subscription will be canceled. In other words, the
+  customer will no longer have access to your service after this time. This
+  parameter should only be provided when `status` is set to `canceled`.
+</Param>
+
+<Param body="canceled_at" type="int32">
+  A 10-digit (seconds) unix timestamp indicating when customer expressed their
+  intent to cancel. This parameter should only be provided when `status` is set
+  to `canceled`.
+</Param>
+
+<Param body="trial_end" type="int32">
+  A 10-digit (seconds) [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time)
+  indicating when the trial subscription ends. This parameter should only be
+  provided when `status` is set to `trialing`.
+</Param>
+
+<Param body="trial_start" type="int32">
+  A 10-digit (seconds) [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time)
+  indicating when the trial subscription begins. This parameter should only be
+  provided when `status` is set to `trialing`.
+</Param>
+
+<ResponseExample>
+
+```json Example
+{
+  "message": "[dev=False] subscription record 97#user123#stripe#origin789 was written.",
+  "success": true,
+  "record": {
+    "origin": "stripe",
+    "type": "subscription",
+    "latest_event_timestamp": 1628549872,
+    "latest_event_id": "corrily_evt_1628549872",
+    "corrily_product_id": 122,
+    "org_id": 97,
+    "origin_id": "origin789",
+    "user_id": "user123",
+    "created": 1628548983,
+    "interval": "month",
+    "interval_count": 1,
+    "status": "active",
+    "cancel_at": null,
+    "canceled_at": null,
+    "trial_start": null,
+    "trial_end": null,
+    "currency": null,
+    "amount": null,
+    "amount_usd": null,
+    "amount_usd_monthly": null
+  }
+}
+```
+
+</ResponseExample>
+
+<RequestExample>
+
+```bash Bash
+curl --request POST \
+   --url https://client.corrily.com/v1/subscriptions \
+   --header 'Accept: application/json' \
+   --header 'Content-Type: application/json' \
+   --data '
+{
+   "amount": 0,
+   "country": "string",
+   "created": 0,
+   "currency": "string",
+   "origin": "string",
+   "origin_id": "string",
+   "product": "Unknown Type: mixed type",
+   "status": "string",
+   "user_id": "string",
+   "cancel_at": 0,
+   "canceled_at": 0,
+   "trial_end": 0,
+   "trial_start": 0
+}
+'
+```
+
+```js Node
+const fetch = require("node-fetch");
+
+const url = "https://client.corrily.com/v1/subscriptions";
+const options = {
+  method: "POST",
+  headers: { Accept: "application/json", "Content-Type": "application/json" },
+  body: JSON.stringify({
+    amount: 0,
+    country: "string",
+    created: 0,
+    currency: "string",
+    origin: "string",
+    origin_id: "string",
+    product: "Unknown Type: mixed type",
+    status: "string",
+    user_id: "string",
+    cancel_at: 0,
+    canceled_at: 0,
+    trial_end: 0,
+    trial_start: 0,
+  }),
+};
+
+fetch(url, options)
+  .then((res) => res.json())
+  .then((json) => console.log(json))
+  .catch((err) => console.error("error:" + err));
+```
+
+```python Python
+import requests
+
+url = "https://client.corrily.com/v1/subscriptions"
+
+payload = {
+    "amount": 0,
+    "country": "string",
+    "created": 0,
+    "currency": "string",
+    "origin": "string",
+    "origin_id": "string",
+    "product": "Unknown Type: mixed type",
+    "status": "string",
+    "user_id": "string",
+    "cancel_at": 0,
+    "canceled_at": 0,
+    "trial_end": 0,
+    "trial_start": 0
+}
+headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+
+print(response.text)
+```
+
+</RequestExample>

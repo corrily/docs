@@ -1,0 +1,26 @@
+---
+title: "User characteristics"
+---
+
+Corrily can take user characteristics other than location into account when it calculates experimental prices. A characteristic is any attribute of the user that you think may affect the optimal price for that user.
+
+## Supported values for user characteristics
+
+Any single-leveled object of key-value string pairs is valid user characteristics data. Example:
+
+```json
+{
+  "platform": "ios"
+}
+```
+
+The values can be strings, integers, or floats.
+
+You can provide whatever keys and values you want. The keys and values have no intrinsic meaning to Corrily. To Corrily these are simply labels for training its AI models. For example, suppose that you provide a `platform` key every time you calculate a price. Sometimes the value is `ios`, sometimes it's `android`, and sometimes it's `web`. If the users who have their `platform` field set to `web` consistently convert at a higher price more than the `ios` and `android` users, Corrily takes this data into account when calculating future prices for any user with `platform` set to any of these 3 fields. The `web` users would probably be presented higher prices, and the `ios` and `android` users would probably be presented lower prices.
+
+The important thing is to consistently provide the user characteristics data as much as possible when calculating prices. In other words, you need a consistent set of keys, and each key needs a consistent set of values. Corrily's AI models can't learn if the keys and values are constantly changing.
+
+## How to set user characteristics
+
+- Use the `characteristics` parameter of the [calculate price](../api-reference/calculate-price) API endpoint when you want to take into account temporary or frequently changing factors that may affect the user's optimal price.
+- Use the [set user characteristics](../api-reference/set-user-characteristics) API endpoint to inform Corrily of long-term, rarely changing characteristics that will probably affect all of the user's optimal prices. Corrily takes these characteristics into account for every price that it calculates for this user.

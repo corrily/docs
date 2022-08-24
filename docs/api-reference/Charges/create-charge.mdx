@@ -1,0 +1,99 @@
+---
+title: "Create charge"
+api: "POST https://client.corrily.com/v1/charges"
+description: "Notify Corrily that one of your customers has initiated a one-time transaction."
+auth: "bearer"
+---
+
+<RequestExample>
+
+```bash Response
+curl --request POST \
+     --url https://client.corrily.com/v1/charges \
+     --header 'Accept: application/json' \
+     --header 'Content-Type: application/json' \
+     --data '
+{
+     "amount_refunded": 0
+}
+'
+```
+
+</RequestExample>
+
+<Warning>
+  <h3>Custom payment gateway integrations only</h3>
+
+You do not need to use this endpoint if you have [granted Corrily automated access](../payment-gateways/integration-guide#recommended-provide-automated-access-of-subscription-and-charge-events) to your payment gateway's subscription and charge events.
+
+</Warning>
+
+## Body Params
+
+<Param body="amount" type="float" required>
+
+The amount (price) of the charge.
+
+</Param>
+
+<Param body="amount_refunded" type="float" default="0">
+
+The amount refunded by the charge. Only required if amount is undefined.
+
+</Param>
+
+<Param body="created" type="int32" required>
+
+A 10-digit (seconds) [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time)
+indicating when the charge was created. This timestamp should represent when
+the charge was initialized, regardless of the status of the charge during the
+initialization. It's rare to need to update `created` after initially setting
+it.
+
+</Param>
+
+<Param body="currency" type="string" required>
+
+The three-letter [(ISO 4217)](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) currency code.
+
+</Param>
+
+<Param body="country" type="string">
+
+User's two-letter ISO3166 country code.
+
+</Param>
+
+<Param body="origin" type="string" required>
+
+The payment gateway that handled the charge. Accepted values: `stripe`,
+`paypal`, `chargebee`.
+
+</Param>
+
+<Param body="origin_id" type="string" required>
+  A unique identifier for the charge. This can be the ID that the payment
+  gateway assigned to the charge.
+</Param>
+
+<Param body="product" type="string" required>
+
+A product ID string or a payment gateway integration object. Product IDs are
+created by Corrily when you set up your Corrily account. Email
+support@corrily.com if you don't know them. See the response of the [calculate
+price](../calculate-price) endpoint for an
+example of the structure of integration objects.
+
+</Param>
+
+<Param body="status" type="string" required>
+
+The status of the charge. Accepted values: `pending`, `succeeded`, `failed`.
+
+</Param>
+
+<Param body="user_id" type="string" required>
+
+A [User ID](../users/user-ids).
+
+</Param>

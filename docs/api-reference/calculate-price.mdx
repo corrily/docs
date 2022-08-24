@@ -1,0 +1,397 @@
+---
+title: "Calculate price"
+description: "Calculate a localized or optimized price for your service or product based on the customer's location and other characteristics."
+api: "POST https://client.corrily.com/v1/prices"
+---
+
+export const id = "<id>";
+export const gateway = "<gateway>";
+
+## Usage
+
+The first time that you call this endpoint for a given IP address and user ID, Corrily calculates the price. On subsequent calls (with the same IP address and user ID), Corrily returns the original calculated price.
+
+See [Calculate price API examples](../pricing/calculate-price-api-examples) for examples of how this endpoint is commonly used.
+
+### Price localization
+
+If you're only using Corrily for price localization (i.e. you are not doing price optimization), this is the endpoint that you call in order to get localized prices.
+
+### Price optimization
+
+If you're also doing price optimization, this is the endpoint you call to get optimized prices.
+
+As explained in [Price optimization overview](../pricing/price-optimization-overview), Corrily either returns an experimental price or a control price which will be used to benchmark the experimental prices.
+
+Experimental prices are affected by the following factors:
+
+- The (potential) customer's location, which is inferred from their IP address
+- Any [user characteristics](../users/user-characteristics) that you have provided
+- The outcomes of previous price experiments
+- The upper and lower bounds that you defined in the Corrily Dashboard
+
+## Body Params
+
+<Param body="user_id" type="string">
+
+A [User ID](../users/user-ids). Only required if no `ip` is provided and `get_ip_from_request` is `false`.
+
+</Param>
+
+<Param body="products" type="[string]" required>
+
+The product IDs that you want to calculate prices for. In general, you probably want to include the product IDs for all the product offerings that you intend to show your visitor. The response from Corrily will contain the display price for each product. For example, if you provide `["monthly", "annual"]`, Corrily returns price data for your `monthly` and `annual` products. Product IDs are created by Corrily when you set up your Corrily account. Email support@corrily.com if you don't know yours.
+
+</Param>
+
+<Param body="ip" type="string">
+
+An IPv4 or IPv6 address. Corrily uses this as the user ID if no user_id is provided. ip is only required if no user_id is provided and `get_ip_from_request` is false. Examples: `187.106.3.73` (IPv4), `2804:14d:ac91:8286:efcb:851f:b59f:fffc` (IPv6).
+
+</Param>
+
+<Param body="get_ip_from_request" type="boolean">
+
+If `true`, Corrily sources the user's IP from this request. `get_ip_from_request` therefore only works correctly when the Corrily API request is made from a client device.
+
+</Param>
+
+<Param body="country" type="string">
+
+A two-letter (Alpha-2) [ISO 3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes#Current_ISO_3166_country_codes). Example: `US`
+
+</Param>
+
+<Param body="features" type="object">
+
+An object containing key-value pairs of arbitrary strings that represent characteristics of this user which may affect their optimal price. See [User characteristics](). Example: `{"platform": "ios"}`
+
+</Param>
+
+<Param body="integrations" type="[string]">
+
+The payment gateways to return integration objects for. Accepted values: `stripe`, `paypal`, `chargebee`
+
+</Param>
+
+<Param body="currency" type="string">
+
+A currency you wish the price to be tied to. Currencies do not need to match
+the passed country. For example, it is possible to return a price in EUR for
+someone based in the Unites Sates. Note that the country-adjusted price will
+be returned, regardless of the currency set.
+
+</Param>
+
+<Param body="override" type="boolean">
+
+Will override any previously saved values for a user and instead return a new price.
+
+</Param>
+
+<Param body="run_experiment" type="boolean">
+
+If set to false, will make sure no experiment is run.
+
+</Param>
+
+<Param body="coupons" type="object">
+
+Optional product id to coupon id mapping to explicitly specify the coupon to be applied in the pricing. Coupons feature needs to be enabled for this. example `{"product_id_1": "coupon_id_1"}`. Multiple coupons can be applied by a comma-delimited string, for example: `{"product_id_1": "coupon_id_1,coupon_id2"}`
+
+</Param>
+
+## Response
+
+<ResponseField name="success" type="boolean">
+
+Whether or not the request completed successfully.
+
+</ResponseField>
+
+<ResponseField name="user_id" type="string">
+
+The user ID that you provided when you called calculate price, or the user's IP address (if you did not provide a user ID).
+
+</ResponseField>
+
+<ResponseField name="country" type="string">
+
+The country that the price data is associated to. If you did not specify a country when calling calculate price, the `country` value provided here in the response is inferred from the user's IP address.
+
+</ResponseField>
+
+<ResponseField name="currency" type="string">
+
+The currency that the price data is associated to. Tip: check if `products.{id}.display.price` meets your needs before manually constructing a display price with this field.
+
+</ResponseField>
+
+<ResponseField name="currency_symbol" type="string">
+
+The currency symbol that the price data is associated to. Tip: check if `products.{id}.display.price` meets your needs before manually constructing a display price with this field.
+
+</ResponseField>
+
+<ResponseField name="products" type="object">
+
+The price data for each of the products that you specified when you called calculate price. The placeholder `{id}` below represents your product ID(s). See [Setup](../basics/setup) to learn how to create product IDs.
+
+  <Expandable title="<id>">
+    <ResponseField name="price" type="float">
+      A float version of your price, in case you want to do some custom formatting of the price. Tip: check if `products.{id}.display.price` meets your needs before manually constructing a display price with this field.
+    </ResponseField>
+    <ResponseField name="price_usd" type="float">
+      The current value of `products.{id}.price` in United States dollars.
+    </ResponseField>
+    <ResponseField name="interval" type="string">
+      The billing interval of this product. Possible values: `day`, `week`, `month`, `year`, `one_time`
+    </ResponseField>
+    <ResponseField name="interval_count" type="integer" />
+    <ResponseField name="display" type="object">
+    The price data, formatted in various ways for display to your user.
+    <Expandable title="properties">
+      <ResponseField name="price" type="string">
+        The price data, formatted in a way that your user will quickly understand. This is usually a combination of `currency`, `currency_symbol`, and `products.{id}.price`. `products.{id}.price` will use commas or periods as separators if that is the local custom. Example: `JP¥2,200`
+      </ResponseField>
+      <ResponseField name="reference_interval_price" type="string">
+        The default price for the product. You can set this default price in your Corrily Dashboard.
+      </ResponseField>
+      <ResponseField name="price_with_baseline_strike" type="string">
+        If `products.{id}.price` is an experimental price, this field contains the baseline price striked out, followed by the experimental price. You may want to present this to your user to help them see that they would be paying less than normal customers. Example: $̶3̶4̶ $19
+      </ResponseField>
+      <ResponseField name="discount_to_baseline" type="float">
+        If `products.{id}.price` is an experimental price, this field contains the percentage discount of the experimental price compared to the baseline price. For example, if the baseline price is 34 and the experimental price is 19, the discount is about 44%: 1 - (19 ÷ 34)) × 100
+      </ResponseField>
+    </Expandable>
+    
+    </ResponseField>
+    
+  <ResponseField name="integrations" type="object">
+  The price data, formatted for payment gateway integration.
+
+  <Expandable title="<gateway>">
+  <ResponseField name="currency" type="string">
+    The currency that `products.{id}.integrations.{gateway}.amount` is priced in. If this currency is not the same as the top-level `currency` value in this response (the "local currency"), it means that the payment gateway does not accept the local currency.
+  </ResponseField>
+
+<ResponseField name="amount" type="float">
+  The amount that you should pass to the payment gateway when creating the
+  subscription or charge. Many payment gateways use [smallest-unit currency
+  format](../payment-gateways/integration-guide#map-smallest-unit-currency-format-to-decimal-format)
+  in which case this value will be an integer.
+</ResponseField>
+
+<ResponseField name="formatted" type="string">
+  As mentioned in `products.{id}.integrations.{gateway}.currency`, sometimes a
+  payment gateway doesn't support your user's local currency. If that's the
+  case, then `products.{id}.integrations.
+  {gateway}.formatted` provides the equivalent price in a currency that the payment
+  gateway does support. This field is similar to `products.{id}.display.price` in
+  that it will be formatted in a way that your user will quickly understand.
+</ResponseField>
+
+  </Expandable>
+  </ResponseField>
+
+<ResponseField name="coupon" type="object">
+  Optionally include coupon details if the given request matches any segment for
+  which an active campaign is running
+  <Expandable>
+    <ResponseField name="id" type="string">
+      coupon id
+    </ResponseField>
+    <ResponseField name="type" type="string">
+      indicates if a coupon is percentage discount coupon or absolute amount
+      discount coupon
+    </ResponseField>
+    <ResponseField name="value" type="float">
+      The value or percentage or absolute amount of discount for the coupon
+    </ResponseField>
+    <ResponseField name="coupon_source" type="string">
+      Indicates the source of the coupon if the coupon maps to an external
+      source
+    </ResponseField>
+    <ResponseField name="external_coupon_id" type="string">
+      Coupon id from the external source if that coupon maps to an external
+      source
+    </ResponseField>
+    <ResponseField name="currency_code" type="string">
+      Indicates currency code if it is configured for the coupon
+    </ResponseField>
+    <ResponseField name="valid_till" type="string">
+      Datetime in YYYY-MM-DD HH:MM:SS format. Indicates the time the coupon is
+      valid for in UTC.
+    </ResponseField>
+    <ResponseField name="display" type="object">
+      Same as product level display object but indicates the price related
+      values after the coupon is applied
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="variants" type="object">
+
+Price experimentation metadata. If you are not doing price experimentation,
+you can ignore this object.
+
+  <Expandable>
+    <ResponseField name="experimented_on" type="boolean">
+      Whether or not this response contains experimental prices.
+    </ResponseField>
+  </Expandable>
+  
+</ResponseField>
+
+<ResponseExample>
+
+```json Example
+{
+  "success": true,
+  "user_id": "193.37.32.232",
+  "country": "SG",
+  "currency": "SGD",
+  "currency_symbol": "S$",
+  "products": {
+    "monthly": {
+      "price": 27,
+      "price_usd": 20.059360849328197,
+      "interval": "month",
+      "interval_count": 1,
+      "display": {
+        "price": "S$ 27",
+        "reference_interval_price": "S$ 27",
+        "price_with_baseline_strike": "S$ 27",
+        "discount_to_baseline": 0
+      },
+      "integrations": {
+        "stripe": {
+          "currency": "SGD",
+          "amount": 2700,
+          "formatted": "S$ 27"
+        }
+      }
+    },
+    "annual": {
+      "price": 144,
+      "price_usd": 106.98325786308372,
+      "interval": "year",
+      "interval_count": 1,
+      "display": {
+        "price": "S$ 144",
+        "reference_interval_price": "S$ 12",
+        "price_with_baseline_strike": "S$ 12",
+        "discount_to_baseline": 0
+      },
+      "integrations": {
+        "stripe": {
+          "currency": "SGD",
+          "amount": 14400,
+          "formatted": "S$ 144"
+        }
+      },
+      "coupon": {
+        "id": "coupon_id_392",
+        "type": "percentage",
+        "value": 10,
+        "coupon_source": "chargebee",
+        "external_coupon_id": "chargebee_coupon_392",
+        "currency_code": "USD",
+        "valid_till": "2022-02-07 15:49:49",
+        "display": {
+          "local_currency_symbol": "€",
+          "interval_local_price_formatted": "9 €",
+          "local_price_formatted": "9 €",
+          "usd_price_formatted": "$11",
+          "local_price_formatted_with_baseline_strike": "9 €",
+          "pct_discount_to_baseline": 0.0
+        }
+      }
+    }
+  },
+  "variants": {
+    "experimented_on": true
+  }
+}
+```
+
+</ResponseExample>
+
+<RequestExample>
+
+```bash Bash
+curl --request POST \
+     --url https://client.corrily.com/v1/prices \
+     --header 'Content-Type: application/json' \
+     --data '
+{
+     "user_id": "string",
+     "products": [
+          "string"
+     ],
+     "ip": "string",
+     "get_ip_from_request": true,
+     "country": "string",
+     "integrations": [
+          "string"
+     ],
+     "currency": "string",
+     "override": true,
+     "run_experiment": true
+}
+'
+```
+
+```js Node
+const fetch = require("node-fetch");
+
+const url = "https://client.corrily.com/v1/prices";
+const options = {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    user_id: "string",
+    products: ["string"],
+    ip: "string",
+    get_ip_from_request: true,
+    country: "string",
+    integrations: ["string"],
+    currency: "string",
+    override: true,
+    run_experiment: true,
+  }),
+};
+
+fetch(url, options)
+  .then((res) => res.json())
+  .then((json) => console.log(json))
+  .catch((err) => console.error("error:" + err));
+```
+
+```python Python
+import requests
+
+url = "https://client.corrily.com/v1/prices"
+
+payload = {
+    "user_id": "string",
+    "products": ["string"],
+    "ip": "string",
+    "get_ip_from_request": True,
+    "country": "string",
+    "integrations": ["string"],
+    "currency": "string",
+    "override": True,
+    "run_experiment": True
+}
+headers = {"Content-Type": "application/json"}
+
+response = requests.post(url, json=payload, headers=headers)
+
+print(response.text)
+```
+
+</RequestExample>

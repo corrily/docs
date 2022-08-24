@@ -1,0 +1,88 @@
+{
+  "name": "Corrily",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "favicon": "/favicon.svg",
+  "topbarCtaButton": {
+    "name": "Schedule a demo",
+    "url": "https://calendly.com/meet-corrily/demo-call?utm_content=hero"
+  },
+  "colors": {
+    "primary": "#2AB896",
+    "light": "#3DE2BB",
+    "dark": "#371BB1",
+    "ultraLight": "#D0EDE6",
+    "ultraDark": "#230E7D"
+  },
+  "anchors": [
+    {
+      "name": "API Reference",
+      "icon": "rectangle-terminal",
+      "url": "api-reference"
+    }
+  ],
+  "api": {
+    "auth": {
+      "method": "key",
+      "name": "X-Api-Key"
+    }
+  },
+  "navigation": [
+    {
+      "group": "Basics",
+      "pages": ["basics/quickstart-guide", "basics/setup"]
+    },
+    {
+      "group": "Users",
+      "pages": [
+        "users/user-ids",
+        "users/user-characteristics",
+        "users/handling-anonymous-users"
+      ]
+    },
+    {
+      "group": "Pricing",
+      "pages": [
+        "pricing/price-optimization-overview",
+        "pricing/pricing-page-integration-guide",
+        "pricing/calculate-price-api-examples"
+      ]
+    },
+    {
+      "group": "Payment Gateways",
+      "pages": [
+        "payment-gateways/overview",
+        "payment-gateways/integration-guide",
+        "payment-gateways/sample-app-guide"
+      ]
+    },
+    {
+      "group": "Prices",
+      "pages": ["api-reference/calculate-price"]
+    },
+    {
+      "group": "Users",
+      "pages": ["api-reference/set-user-characteristics"]
+    },
+    {
+      "group": "Subscriptions",
+      "pages": [
+        "api-reference/subscriptions/create-subscription",
+        "api-reference/subscriptions/get-subscription",
+        "api-reference/subscriptions/update-subscription",
+        "api-reference/subscriptions/delete-subscription"
+      ]
+    },
+    {
+      "group": "Charges",
+      "pages": [
+        "api-reference/charges/create-charge",
+        "api-reference/charges/delete-charge",
+        "api-reference/charges/get-charge",
+        "api-reference/charges/update-charge"
+      ]
+    }
+  ]
+}

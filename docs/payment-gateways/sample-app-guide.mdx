@@ -1,0 +1,36 @@
+---
+title: "Sample app guide"
+description: "How we created the Node.js sample app."
+---
+
+This guide walks you through how we created the Corrily sample app in Node.js. The sample app demonstrates how to:
+
+- Use Corrily's [Calculate price](../api-reference/calculate-price) API to present optimal prices to visitors based on their location
+- Charge custom subscription prices in Stripe Checkout
+- Notify Corrily of subscription and invoice events so that it can determine if the prices that it's presenting to your users are optimal
+
+Here's a [live demo](https://corrily.glitch.me/) of the sample app and the full [source code](https://glitch.com/edit/#!/corrily). The recipe at the bottom of this page provides a step-by-step walkthrough of how the sample app's code works.
+
+## Set up your Stripe account
+
+Here is how we set up our Stripe account when creating the demo:
+
+1. Sign up for a [Stripe](https://stripe.com) account.
+1. Log in to the [Stripe Dashboard](https://dashboard.stripe.com).
+1. Open the **Products** page of the Stripe Dashboard.
+1. Click **Add product**.
+1. Enter `Corrily` for the product's **Name**.
+1. Under **Price information** set **Price** to `10`.
+1. Keep the default values for the rest of the
+   fields (**Pricing model**: `Standard pricing`, `Recurring`, **Billing period**: `Monthly`, **Usage is metered**: disabled).
+1. Scroll to the bottom of the page and click **Add another price**.
+1. Set **Price** to `100` (`USD`).
+1. Set **Billing period** to `Yearly`.
+1. Leave the rest of the values the same as before.
+1. Click **Save product**. Stripe takes you to the **Overview** page for your new product.
+1. Under the **Details** section note your product **ID**. It should look similar to this: `prod_XXXXXXXXXX`
+1. Under the **Pricing** section note your **API ID** values. You should have one for your monthly pricing option and another one for your yearly pricing option. They should look like this: `price_XXXXXXXXXX`
+
+## Set up your Corrily account
+
+See [Setup](../basics/setup).

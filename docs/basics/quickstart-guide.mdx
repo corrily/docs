@@ -1,0 +1,152 @@
+---
+title: "Quickstart guide"
+description: "Try out the Corrily REST API (no registration required) and get an overview of the Corrily integration workflow."
+---
+
+## Get an API key and product ID(s)
+
+If you want to quickly try out the Corrily API, you can use the following demo API key and product IDs:
+
+- API key: `b82fd0fa-2a1b-4226-b6c0-22884ae97f84`
+- Product IDs:
+  - `monthly`
+  - `annual`
+
+See [Setup](./setup) to learn how to create your own API key and product ID(s).
+
+## Notify Corrily of payment gateway events
+
+<Note>
+
+You don't need to integrate Corrily with your payment gateway(s) right now. You'll need to do this before deploying Corrily to production, however.
+
+</Note>
+
+As explained in [Price optimization overview](../pricing/price-optimization-overview), Corrily needs to be notified of subscription and charge events. The easiest way is through OAuth and just requires 2 clicks. After access is granted, your payment gateway automatically notifies Corrily of subscription and charge events. Otherwise you can [manually notify Corrily](../payment-gateways/integration-guide#manually-notify-corrily-of-subscription-and-charge-events).
+
+If you're using Stripe and would like to get your Corrily integration started now, click the **Connect with Stripe** button to grant Corrily read-only access to your Stripe subscription and charge events.
+
+<a
+  target="_blank"
+  href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_IvVOYSONFblYt8sgK4ZTee6JwJSwdNGD&scope=read_only"
+>
+  <button
+    style={{
+      backgroundColor: "#230e7d",
+      color: "#fff",
+      padding: "12px 15px",
+      fontSize: "18px",
+      border: "none",
+      borderRadius: "4px",
+    }}
+  >
+    Connect with Stripe
+  </button>
+</a>
+
+## Calculate a price
+
+Run the following code samples to try out Corrily's [calculate price](../api-reference/calculate-price) REST API endpoint. This is the endpoint that you call if you want to localize or optimize your prices; it handles both use cases. See [Calculate price response](../api-reference/calculate-price#response) for an explanation of the response object's fields. The first time that you call the endpoint, it calculates a price for the user ID and IP address you specified. On subsequent calls (assuming that you pass in the same user ID and IP address as before) Corrily returns the same price data from the first call.
+
+Note that the demo API key (`api_key`) and product IDs (`products`) are hardcoded into the code samples below.
+
+<Tip>
+  
+<h3>An easy way to run the JavaScript code samples</h3>
+
+A tip for anyone who is not familiar with frontend programming but would still like to try out the JavaScript code samples below: your browser's [console](https://support.monday.com/hc/en-us/articles/360002197259-How-to-Open-the-Developer-Console) is essentially a REPL.
+
+</Tip>
+
+<Tip>
+  
+<h3>Another easy way to try out the API</h3>
+
+Go to the [calculate price](../api-reference/calculate-price) reference page, enter the required fields, then click **Try It**.
+
+</Tip>
+
+### Create a price based on the client's IP address
+
+In this first code sample, the `get_ip_from_request` field instructs Corrily to infer the user's location from their IP address.
+
+```js JavaScript
+const headers = new Headers();
+headers.append("api_key", "b82fd0fa-2a1b-4226-b6c0-22884ae97f84");
+headers.append("Content-Type", "application/json");
+
+// https://stackoverflow.com/a/2117523
+function uuidv4() {
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+    (
+      c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16)
+  );
+}
+
+const data = JSON.stringify({
+  user_id: uuidv4(),
+  get_ip_from_request: true,
+  products: ["monthly", "annual"],
+});
+
+const options = {
+  method: "POST",
+  headers: headers,
+  body: data,
+  redirect: "follow",
+};
+
+fetch("https://client.corrily.com/v1/prices", options)
+  .then((response) => response.json())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+### Create a price based on a country code
+
+In this next example, the `country` field instructs Corrily to return a price in the specified country's currency.
+
+```js JavaScript
+const headers = new Headers();
+headers.append("api_key", "b82fd0fa-2a1b-4226-b6c0-22884ae97f84");
+headers.append("Content-Type", "application/json");
+
+// https://stackoverflow.com/a/2117523
+function uuidv4() {
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+    (
+      c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16)
+  );
+}
+
+const data = JSON.stringify({
+  user_id: uuidv4(),
+  country: "JP",
+  products: ["monthly", "annual"],
+});
+
+const options = {
+  method: "POST",
+  headers: headers,
+  body: data,
+  redirect: "follow",
+};
+
+fetch("https://client.corrily.com/v1/prices", options)
+  .then((response) => response.json())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+## Next steps
+
+- [Set up your own API key and product ID(s)](./setup)
+- Read the [Price optimization overview](..pricing/price-optimization-overview) to understand how Corrily's price optimization works
+- Read the [Pricing page integration guide](../pricing/pricing-page-integration-guide) to learn how to integrate Corrily's API into your pricing page
+- Read the [Payment gateway integration guide](../payment-gateways/integration-guide) to learn how to send custom prices to your payment gateway and notify Corrily of subscription and charge events
+- Try out the [sample app](https://corrily.glitch.me) and browse its [source code](https://glitch.com/edit/#!/corrily)
+  - Note: the sample app manually notifies Corrily of subscription and charge events which requires more code than the recommended OAuth approach
