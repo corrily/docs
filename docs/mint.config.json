@@ -69,19 +69,19 @@
     {
       "group": "Subscriptions",
       "pages": [
-        "api-reference/subscriptions/create-subscription",
-        "api-reference/subscriptions/get-subscription",
-        "api-reference/subscriptions/update-subscription",
-        "api-reference/subscriptions/delete-subscription"
+        "api-reference/create-subscription",
+        "api-reference/get-subscription",
+        "api-reference/update-subscription",
+        "api-reference/delete-subscription"
       ]
     },
     {
       "group": "Charges",
       "pages": [
-        "api-reference/charges/create-charge",
-        "api-reference/charges/delete-charge",
-        "api-reference/charges/get-charge",
-        "api-reference/charges/update-charge"
+        "api-reference/create-charge",
+        "api-reference/delete-charge",
+        "api-reference/get-charge",
+        "api-reference/update-charge"
       ]
     }
   ]
