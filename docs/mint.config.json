@@ -84,5 +84,10 @@
         "api-reference/update-charge"
       ]
     }
-  ]
+  ],
+  "footerSocials": {
+    "website": "https://www.corrily.com",
+    "twitter": "https://twitter.com/usecorrily",
+    "linkedin": "https://www.linkedin.com/company/corrily"
+  }
 }
