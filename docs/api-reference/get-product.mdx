@@ -15,38 +15,40 @@ curl --location --request GET 'https://default.corrily.com/mainapi/v1/products/m
 </RequestExample>
 
 <ResponseExample>
+
 ```json Example
 {
-   "message": "Successfully created product.",
-   "success": true,
-   "api_id": "monthly",
-   "name": "Monthly Product",
-   "base_px": 10.0,
-   "max_px": 999.0,
-   "min_px": 0.0,
-   "baseline_id": null,
-   "country_prices": [
-      {
-         "country": "ES",
-         "local_price": 50.0,
-         "currency": "EUR"
-      }
-   ],
-   "integrations": [
-      {
-         "id": 87,
-         "org": 170,
-         "product_id": 1189,
-         "stripe_price_id": null,
-         "stripe_product_id": "my_stripe_pid",
-         "interval": null,
-         "interval_count": null,
-         "created_at": "2022-09-07T12:54:46.031057+00:00",
-         "updated_at": "2022-09-07T12:54:46.031057+00:00"
-      }
-   ]
+  "message": "Successfully created product.",
+  "success": true,
+  "api_id": "monthly",
+  "name": "Monthly Product",
+  "base_px": 10.0,
+  "max_px": 999.0,
+  "min_px": 0.0,
+  "baseline_id": null,
+  "country_prices": [
+    {
+      "country": "ES",
+      "local_price": 50.0,
+      "currency": "EUR"
+    }
+  ],
+  "integrations": [
+    {
+      "id": 87,
+      "org": 170,
+      "product_id": 1189,
+      "stripe_price_id": null,
+      "stripe_product_id": "my_stripe_pid",
+      "interval": null,
+      "interval_count": null,
+      "created_at": "2022-09-07T12:54:46.031057+00:00",
+      "updated_at": "2022-09-07T12:54:46.031057+00:00"
+    }
+  ]
 }
 ```
+
 </ResponseExample>
 
 ## Path Params
