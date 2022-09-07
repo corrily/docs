@@ -10,14 +10,13 @@ auth: "bearer"
 ```bash Response
 
 curl --location -g --request POST '{{MAINAPI_HOST}}/v1/products' \
---header 'x-api-key: 0947f514-6046-4d28-88e6-c8d77cf8bc9b' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "api_id": "my_new_product",
     "name": "my_new_product",
     "base_px": 10,
     "min_px": 0,
-    "max_px": 999,
+    "max_px": 9999,
     "interval": "month",
     "interval_count": 1,
     "country_prices": [
@@ -44,25 +43,26 @@ curl --location -g --request POST '{{MAINAPI_HOST}}/v1/products' \
 
 <Param body="name" type="string" required>
 
-The name of the product
+The name of the product. Must be unique.
 
 </Param>
 
 <Param body="base_px" type="float">
 
-The base price of the product in USD
+The base price of the product in USD.
 
 </Param>
 
 <Param body="interval" type="string" required>
 
-A string value denoting how often to bill for a subscription
+A string value denoting how often to bill for a subscription. Possible values: `day`, `week`, `month`, `year`, `one_time`.
 
 </Param>
 
 <Param body="interval_count" type="int32" required>
 
-An integer denoting how many intervals to bill for the given interval 
+An integer denoting how many intervals to bill for the. A monthly product would have `month` as interval and `1` as interval counts, etc.
+One time products should have an interval count of `1`.
 
 </Param>
 
