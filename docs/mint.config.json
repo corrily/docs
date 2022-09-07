@@ -87,7 +87,7 @@
     {
       "group": "Products",
       "pages": [
-        "api-reference/create-product",
+        "api-reference/create-product"
       ]
     }
   ],
