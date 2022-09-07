@@ -98,7 +98,7 @@ One time products should have an interval count of `1`.
 
 <Param body="country_prices" type="[object]">
 
-Country prices.
+A list of country price objects.
 
 <Expandable title="<country_price_object>">
     <ResponseField name="country" type="string" required>
@@ -109,6 +109,67 @@ Country prices.
     </ResponseField>
     <ResponseField name="currency" type="string" required>
         The three-letter ISO4217 currency code of the price in this country.
+    </ResponseField>
+
+</Expandable>
+
+
+</Param>
+
+
+<Param body="integrations" type="[object]">
+
+A list of integration price objects.
+
+<Expandable title="<stripe>">
+    <ResponseField name="type" type="string" required>
+        Should be set to equal `stripe`.
+    </ResponseField>
+    <ResponseField name="stripe_product_id" type="float" required>
+        The matching [Stripe product ID](https://stripe.com/docs/api/products/object#product_object-id).
+    </ResponseField>
+
+</Expandable>
+
+<Expandable title="<stripe_with_interval>">
+    <ResponseField name="type" type="stripe_with_interval" required>
+        Should be set to equal `stripe_with_interval`.
+    </ResponseField>
+    <ResponseField name="stripe_product_id" type="float" required>
+        The matching [Stripe product ID](https://stripe.com/docs/api/products/object#product_object-id).
+    </ResponseField>
+    <ResponseField name="interval" type="float" required>
+        The frequency at which a subscription is billed. One of `day`, `week`, `month` or `year`.
+        Sometimes Stripe products actually encompass more than what Corrily would consider a product. For example,
+        the Stripe product for a company's "Pro Plan" might have two
+        [Price objects](https://stripe.com/docs/api/prices/object)
+        one for the monthly version of the plan, the other for its annual version. Meanwhile, Corrily would consider
+        these to be two distinct products `pro_monthly` and `pro_annual`. To capture such differences you can pass
+        a `stripe_with_interval` integration object which can help separate such cases.
+    </ResponseField>
+    <ResponseField name="interval_count" type="float" required>
+        The number of intervals (specified in the interval attribute) between subscription billings.
+        For example, interval=month and interval_count=3 bills every 3 months.
+    </ResponseField>
+
+</Expandable>
+
+<Expandable title="<chargebee>">
+    <ResponseField name="type" type="string" required>
+        Should be set to equal `chargebee`.
+    </ResponseField>
+    <ResponseField name="chargebee_plan_id" type="float" required>
+       The matching [Chargebee plan ID](https://apidocs.chargebee.com/docs/api/plans?prod_cat_ver=1#plan_id).
+    </ResponseField>
+
+</Expandable>
+
+<Expandable title="<recurly>">
+    <ResponseField name="type" type="string" required>
+        Should be set to equal `recurly`.
+    </ResponseField>
+    <ResponseField name="chargebee_plan_id" type="float" required>
+        The matching [Recurly plan ID](https://developers.recurly.com/api/v2021-02-25/index.html#operation/create_plan).
     </ResponseField>
 
 </Expandable>
