@@ -85,7 +85,15 @@ be returned, regardless of the currency set.
 
 <Param body="override" type="boolean">
 
-Will override any previously saved values for a user and instead return a new price.
+Will override any previously saved price for a user and instead return a new price. Both price amount and currency will
+be recomputed.
+
+</Param>
+
+<Param body="override_currency" type="boolean">
+
+Will override the currency of any previously saved price and instead return the price in the currency provided. If set
+to `true`, a `currency` param must be passed. Unlike `override` the price amount will *not* be recomputed.
 
 </Param>
 
