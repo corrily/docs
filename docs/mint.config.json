@@ -84,6 +84,11 @@
         "api-reference/update-charge"
       ]
     }
+    
+    "group": "Products",
+      "pages": [
+        "api-reference/create-product",
+      ]
   ],
   "footerSocials": {
     "website": "https://www.corrily.com",
