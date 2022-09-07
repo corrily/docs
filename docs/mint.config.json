@@ -89,7 +89,8 @@
       "pages": [
         "api-reference/create-product",
         "api-reference/get-product",
-        "api-reference/update-product"
+        "api-reference/update-product",
+        "api-reference/delete-product"
       ]
     }
   ],

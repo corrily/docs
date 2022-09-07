@@ -1,0 +1,37 @@
+---
+title: "Delete Product"
+api: "DELETE https://client.corrily.com/v1/products/{product_api_id}"
+description: "Delete an existing Corrily product."
+---
+
+<RequestExample>
+
+```bash Response
+
+curl --location --request DELETE 'https://default.corrily.com/mainapi/v1/products/monthly'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json Example
+
+{
+   {
+    "message": "Successfully deleted product my_new_product21",
+    "success": true
+    }
+}
+
+```
+
+</ResponseExample>
+
+## Path Params
+
+<Param path="product_api_id" type="string" required>
+
+The api ID of the product.
+
+</Param>
