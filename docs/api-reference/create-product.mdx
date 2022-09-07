@@ -1,0 +1,68 @@
+---
+title: "Create Product"
+api: "POST https://client.corrily.com/v1/products"
+description: "Create, Read, Update and Delete products and subscriptions in Corrily"
+auth: "bearer"
+---
+
+<RequestExample>
+
+```bash Response
+
+curl --location -g --request POST '{{MAINAPI_HOST}}/v1/products' \
+--header 'x-api-key: 0947f514-6046-4d28-88e6-c8d77cf8bc9b' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "api_id": "my_new_product",
+    "name": "my_new_product",
+    "base_px": 10,
+    "min_px": 0,
+    "max_px": 999,
+    "interval": "month",
+    "interval_count": 1,
+    "country_prices": [
+        {
+            "country": "ES",
+            "amount": 50,
+            "currency": "EUR"
+        }
+    ],
+    "integrations": [
+        {
+            "type": "stripe",
+            "product_id": "my_stripe_pid"
+        }
+    ]
+}'
+```
+
+</RequestExample>
+
+## Body Params
+
+
+
+<Param body="name" type="string" required>
+
+The name of the product
+
+</Param>
+
+<Param body="base_px" type="float">
+
+The base price of the product in USD
+
+</Param>
+
+<Param body="interval" type="string" required>
+
+A string value denoting how often to bill for a subscription
+
+</Param>
+
+<Param body="interval_count" type="int32" required>
+
+An integer denoting how many intervals to bill for the given interval 
+
+</Param>
+
