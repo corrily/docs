@@ -1,6 +1,6 @@
 ---
 title: "Create Product"
-api: "POST https://client.corrily.com/v1/products"
+api: "GET https://client.corrily.com/v1/products/{product_api_id}"
 description: "Create, Read, Update and Delete products and subscriptions in Corrily"
 auth: "bearer"
 ---
@@ -9,30 +9,7 @@ auth: "bearer"
 
 ```bash Response
 
-curl --location -g --request POST 'https://client.corrily.com/v1/products' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "api_id": "my_new_product",
-    "name": "my_new_product",
-    "base_px": 10,
-    "min_px": 0,
-    "max_px": 9999,
-    "interval": "month",
-    "interval_count": 1,
-    "country_prices": [
-        {
-            "country": "ES",
-            "amount": 50,
-            "currency": "EUR"
-        }
-    ],
-    "integrations": [
-        {
-            "type": "stripe",
-            "product_id": "my_stripe_pid"
-        }
-    ]
-}'
+curl --location --request GET 'https://default.corrily.com/mainapi/v1/products/monthly'
 ```
 
 </RequestExample>
@@ -40,64 +17,35 @@ curl --location -g --request POST 'https://client.corrily.com/v1/products' \
 <ResponseExample>
 ```json Example
 {
-   "message":"Successfully created product.",
-   "success":true,
-   "api_id":"monthly",
-   "name":"Monthly Product",
-   "base_px":10.0,
-   "max_px":999.0,
-   "min_px":0.0,
-   "baseline_id":null,
-   "country_prices":[
-      {
-         "country":"ES",
-         "local_price":50.0,
-         "currency":"EUR"
-      }
-   ],
-   "integrations":[
-      {
-         "id":87,
-         "org":170,
-         "product_id":1189,
-         "stripe_price_id":null,
-         "stripe_product_id":"my_stripe_pid",
-         "interval":null,
-         "interval_count":null,
-         "created_at":"2022-09-07T12:54:46.031057+00:00",
-         "updated_at":"2022-09-07T12:54:46.031057+00:00"
-      }
-   ]
+    "message": "Successfully retrieved product.",
+    "success": true,
+    "api_id": "monthly",
+    "name": "Monthly Product",
+    "base_px": 10.0,
+    "max_px": 999.0,
+    "min_px": 0.0,
+    "baseline_id": null,
+    "country_prices": [
+        {
+            "country": "ES",
+            "local_price": 50.0,
+            "currency": "EUR"
+        }
+    ],
+    "integrations": [
+        {
+            "type": "stripe",
+            "product_id": 1189
+        }
+    ]
 }
 ```
 </ResponseExample>
 
-## Body Params
+## Path Params
 
+<Param path="product_api_id" type="string" required>
 
-
-<Param body="name" type="string" required>
-
-The name of the product. Must be unique.
+The api ID of the product.
 
 </Param>
-
-<Param body="base_px" type="float">
-
-The base price of the product in USD.
-
-</Param>
-
-<Param body="interval" type="string" required>
-
-A string value denoting how often to bill for a subscription. Possible values: `day`, `week`, `month`, `year`, `one_time`.
-
-</Param>
-
-<Param body="interval_count" type="int32" required>
-
-An integer denoting how many intervals to bill for the. A monthly product would have `month` as interval and `1` as interval counts, etc.
-One time products should have an interval count of `1`.
-
-</Param>
-
