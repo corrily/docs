@@ -1,7 +1,7 @@
 ---
 title: "Create Product"
 api: "POST https://client.corrily.com/v1/products"
-description: "Create a Corrily product using an API instead of our dashboard."
+description: "Update the properties of a Corrily product."
 auth: "X-Api-Key"
 ---
 
@@ -9,10 +9,9 @@ auth: "X-Api-Key"
 
 ```bash Response
 
-curl --location -g --request POST 'https://client.corrily.com/v1/products' \
+curl --location -g --request POST 'https://client.corrily.com/v1/products/monthly' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "api_id": "monthly",
     "name": "Monthly Product",
     "base_px": 10,
     "interval": "month",
@@ -35,61 +34,35 @@ curl --location -g --request POST 'https://client.corrily.com/v1/products' \
 
 </RequestExample>
 
-<ResponseExample>
+## Path Params
 
-```json Example
-{
-  "message": "Successfully created product.",
-  "success": true,
-  "api_id": "monthly",
-  "name": "Monthly Product",
-  "base_px": 10.0,
-  "baseline_id": null,
-  "country_prices": [
-    {
-      "country": "ES",
-      "local_price": 50.0,
-      "currency": "EUR"
-    }
-  ],
-  "integrations": [
-    {
-      "type": "stripe",
-      "stripe_product_id": "my_stripe_pid",
-    }
-  ]
-}
-```
-
-</ResponseExample>
-
-## Body Params
-
-<Param body="api_id" type="string" required>
-
-The product identifier you will be calling this product with using [Corrily's price endpoint](../api-reference/calculate-price).
-
-</Param>
-
-<Param body="name" type="string" required>
+<Param body="{}product_api_id}" type="string" required>
 
 The name of the product. Must be unique.
 
 </Param>
 
-<Param body="base_px" type="float" required>
+## Body Params
+
+<Param body="name" type="string">
+
+The name of the product. Must be unique.
+
+</Param>
+
+<Param body="base_px" type="float">
 
 The base price of the product in `USD`.
 
 </Param>
 
-<Param body="interval" type="string" required>
+<Param body="interval" type="string">
 
 A string value denoting how often to bill for a subscription. Possible values: `day`, `week`, `month`, `year`, `one_time`.
 
 </Param>
 
-<Param body="interval_count" type="integer" required>
+<Param body="interval_count" type="integer">
 
 An integer denoting how many intervals to bill for the. A monthly product would have `month` as interval and `1` as interval counts, etc.
 One time products should have an interval count of `1`.
@@ -98,7 +71,7 @@ One time products should have an interval count of `1`.
 
 <Param body="country_prices" type="[object]">
 
-A list of one ore more of the below country price object.
+A list of one ore more of the below country price object. *Country prices provided during an update call with overwrite any existing ones*.
 
 <Expandable title="<country_price>">
     <ResponseField name="country" type="string" required>
@@ -119,10 +92,7 @@ A list of one ore more of the below country price object.
 
 <Param body="integrations" type="[object]">
 
-A list of one or more of the below integration price objects. Not required in the case of a custom integration using the
-[Subscription](../api-reference/create-subscription) and
-[Charge](../api-reference/create-subscription) endpoints where Corrily product IDs are passed to alert us of
-payment gateway revenue activity.
+A list of one or more of the below integration price objects. *Integration objects provided during an update call with overwrite any existing ones*.
 
 <Expandable title="<stripe>">
     <ResponseField name="type" type="string" required>
