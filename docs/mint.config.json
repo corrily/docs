@@ -83,12 +83,13 @@
         "api-reference/get-charge",
         "api-reference/update-charge"
       ]
-    }
-    
-    "group": "Products",
+    },
+    {
+      "group": "Products",
       "pages": [
         "api-reference/create-product",
       ]
+    }
   ],
   "footerSocials": {
     "website": "https://www.corrily.com",
