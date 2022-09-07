@@ -128,7 +128,7 @@ payment gateway revenue activity.
     <ResponseField name="type" type="string" required>
         Should be set to equal `stripe`.
     </ResponseField>
-    <ResponseField name="stripe_product_id" type="float" required>
+    <ResponseField name="stripe_product_id" type="string" required>
         The matching [Stripe product ID](https://stripe.com/docs/api/products/object#product_object-id).
     </ResponseField>
 
@@ -138,10 +138,10 @@ payment gateway revenue activity.
     <ResponseField name="type" type="stripe_with_interval" required>
         Should be set to equal `stripe_with_interval`.
     </ResponseField>
-    <ResponseField name="stripe_product_id" type="float" required>
+    <ResponseField name="stripe_product_id" type="string" required>
         The matching [Stripe product ID](https://stripe.com/docs/api/products/object#product_object-id).
     </ResponseField>
-    <ResponseField name="interval" type="float" required>
+    <ResponseField name="interval" type="enum" required>
         The frequency at which a subscription is billed. One of `day`, `week`, `month` or `year`.
         Sometimes Stripe products actually encompass more than what Corrily would consider a product. For example,
         the Stripe product for a company's "Pro Plan" might have two
@@ -161,7 +161,7 @@ payment gateway revenue activity.
     <ResponseField name="type" type="string" required>
         Should be set to equal `chargebee`.
     </ResponseField>
-    <ResponseField name="chargebee_plan_id" type="float" required>
+    <ResponseField name="chargebee_plan_id" type="string" required>
        The matching [Chargebee plan ID](https://apidocs.chargebee.com/docs/api/plans?prod_cat_ver=1#plan_id).
     </ResponseField>
 
@@ -171,7 +171,7 @@ payment gateway revenue activity.
     <ResponseField name="type" type="string" required>
         Should be set to equal `recurly`.
     </ResponseField>
-    <ResponseField name="chargebee_plan_id" type="float" required>
+    <ResponseField name="chargebee_plan_id" type="string" required>
         The matching [Recurly plan ID](https://developers.recurly.com/api/v2021-02-25/index.html#operation/create_plan).
     </ResponseField>
 
