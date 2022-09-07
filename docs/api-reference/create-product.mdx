@@ -119,7 +119,10 @@ A list of country price objects.
 
 <Param body="integrations" type="[object]">
 
-A list of integration price objects.
+A list of integration price objects. Not required in the case of a custom integration using the
+[Subscription](../api-reference/create-subscription) and
+[Charge](../api-reference/create-subscription) endpoints where Corrily product IDs are passed to alert us of
+payment gateway revenue activity.
 
 <Expandable title="<stripe>">
     <ResponseField name="type" type="string" required>
