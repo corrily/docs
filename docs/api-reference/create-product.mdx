@@ -150,7 +150,7 @@ payment gateway revenue activity.
         these to be two distinct products `pro_monthly` and `pro_annual`. To capture such differences you can pass
         a `stripe_with_interval` integration object which can help separate such cases.
     </ResponseField>
-    <ResponseField name="interval_count" type="float" required>
+    <ResponseField name="interval_count" type="integer" required>
         The number of intervals (specified in the interval attribute) between subscription billings.
         For example, interval=month and interval_count=3 bills every 3 months.
     </ResponseField>
