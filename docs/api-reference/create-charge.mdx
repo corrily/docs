@@ -13,7 +13,16 @@ curl --request POST \
      --header 'Content-Type: application/json' \
      --data '
 {
-     "amount_refunded": 0
+     "amount": 50,
+     "amount_refunded": 0,
+     "created": 1662444537,
+     "currency": "USD",
+     "country": "US",
+     "origin": "stripe",
+     "origin_id": "sub_JaHy9Kl6ZMLvId",
+     "product": "monthly",
+     "status": "succeeded",
+     "user_id": "test_user"
 }
 '
 ```
@@ -51,19 +60,19 @@ it.
 
 </Param>
 
-<Param body="currency" type="string" required>
+<Param body="currency" type="enum" required>
 
 The three-letter [(ISO 4217)](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) currency code.
 
 </Param>
 
-<Param body="country" type="string">
+<Param body="country" type="enum">
 
 User's two-letter ISO3166 country code.
 
 </Param>
 
-<Param body="origin" type="string" required>
+<Param body="origin" type="enum" required>
 
 The payment gateway that handled the charge. Accepted values: `stripe`,
 `paypal`, `chargebee`.
@@ -85,7 +94,7 @@ example of the structure of integration objects.
 
 </Param>
 
-<Param body="status" type="string" required>
+<Param body="status" type="enum" required>
 
 The status of the charge. Accepted values: `pending`, `succeeded`, `failed`.
 

@@ -56,7 +56,7 @@ If `true`, Corrily sources the user's IP from this request. `get_ip_from_request
 
 </Param>
 
-<Param body="country" type="string">
+<Param body="country" type="enum">
 
 A two-letter (Alpha-2) [ISO 3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes#Current_ISO_3166_country_codes). Example: `US`
 
@@ -74,7 +74,7 @@ The payment gateways to return integration objects for. Accepted values: `stripe
 
 </Param>
 
-<Param body="currency" type="string">
+<Param body="currency" type="enum">
 
 A currency you wish the price to be tied to. Currencies do not need to match
 the passed country. For example, it is possible to return a price in EUR for
@@ -123,13 +123,13 @@ The user ID that you provided when you called calculate price, or the user's IP 
 
 </ResponseField>
 
-<ResponseField name="country" type="string">
+<ResponseField name="country" type="enum">
 
 The country that the price data is associated to. If you did not specify a country when calling calculate price, the `country` value provided here in the response is inferred from the user's IP address.
 
 </ResponseField>
 
-<ResponseField name="currency" type="string">
+<ResponseField name="currency" type="enum">
 
 The currency that the price data is associated to. Tip: check if `products.{id}.display.price` meets your needs before manually constructing a display price with this field.
 
@@ -179,7 +179,7 @@ The price data for each of the products that you specified when you called calcu
   The price data, formatted for payment gateway integration.
 
   <Expandable title="<gateway>">
-  <ResponseField name="currency" type="string">
+  <ResponseField name="currency" type="enum">
     The currency that `products.{id}.integrations.{gateway}.amount` is priced in. If this currency is not the same as the top-level `currency` value in this response (the "local currency"), it means that the payment gateway does not accept the local currency.
   </ResponseField>
 

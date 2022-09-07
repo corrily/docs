@@ -19,7 +19,7 @@ The amount (price) of the subscription.
 
 </Param>
 
-<Param body="country" type="string">
+<Param body="country" type="enum">
   Users's two-letter ISO3166 country code.
 </Param>
 
@@ -33,7 +33,7 @@ after initially setting it.
 
 </Param>
 
-<Param body="currency" type="string" required>
+<Param body="currency" type="enum" required>
 
 The three-letter ([ISO
 4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes)) currency code.
@@ -62,7 +62,7 @@ gateway assigned to the subscription.
   integration objects.
 </Param>
 
-<Param body="status" type="string" required>
+<Param body="status" type="enum" required>
 
 The status of the subscription. Accepted values: `pending`, `trialing`,
 `active`, `canceled`
