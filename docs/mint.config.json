@@ -79,9 +79,9 @@
       "group": "Charges",
       "pages": [
         "api-reference/create-charge",
-        "api-reference/delete-charge",
         "api-reference/get-charge",
-        "api-reference/update-charge"
+        "api-reference/update-charge",
+        "api-reference/delete-charge"
       ]
     },
     {
