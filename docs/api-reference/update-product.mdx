@@ -7,7 +7,7 @@ auth: "X-Api-Key"
 
 <RequestExample>
 
-```bash Response
+```bash Bash
 
 curl --location -g --request POST 'https://client.corrily.com/v1/products/monthly' \
 --header 'Content-Type: application/json' \
@@ -74,13 +74,13 @@ One time products should have an interval count of `1`.
 A list of one ore more of the below country price object. _Country prices provided during an update call with overwrite any existing ones_.
 
 <Expandable title="<country_price>">
-    <ResponseField name="country" type="string" required>
+    <ResponseField name="country" type="enum" required>
         Two-letter ISO3166 country code.
     </ResponseField>
     <ResponseField name="amount" type="float" required>
         The price of the product in this country.
     </ResponseField>
-    <ResponseField name="currency" type="string" required>
+    <ResponseField name="currency" type="enum" required>
         The three-letter ISO4217 currency code of the price in this country.
     </ResponseField>
 

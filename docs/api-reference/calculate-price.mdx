@@ -123,13 +123,13 @@ The user ID that you provided when you called calculate price, or the user's IP 
 
 </ResponseField>
 
-<ResponseField name="country" type="string">
+<ResponseField name="country" type="enum">
 
 The country that the price data is associated to. If you did not specify a country when calling calculate price, the `country` value provided here in the response is inferred from the user's IP address.
 
 </ResponseField>
 
-<ResponseField name="currency" type="string">
+<ResponseField name="currency" type="enum">
 
 The currency that the price data is associated to. Tip: check if `products.{id}.display.price` meets your needs before manually constructing a display price with this field.
 
@@ -179,7 +179,7 @@ The price data for each of the products that you specified when you called calcu
   The price data, formatted for payment gateway integration.
 
   <Expandable title="<gateway>">
-  <ResponseField name="currency" type="string">
+  <ResponseField name="currency" type="enum">
     The currency that `products.{id}.integrations.{gateway}.amount` is priced in. If this currency is not the same as the top-level `currency` value in this response (the "local currency"), it means that the payment gateway does not accept the local currency.
   </ResponseField>
 
@@ -246,11 +246,25 @@ The price data for each of the products that you specified when you called calcu
 Price experimentation metadata. If you are not doing price experimentation,
 you can ignore this object.
 
-  <Expandable>
-    <ResponseField name="experimented_on" type="boolean">
-      Whether or not this response contains experimental prices.
-    </ResponseField>
-  </Expandable>
+<Expandable>
+
+<ResponseField name="experimented_on" type="boolean">
+Whether or not this response contains experimental prices.
+</ResponseField>
+<ResponseField name="experiment_id" type="int">
+The ID of this experiment. An id of `0` means no experiment was run.
+</ResponseField>
+<ResponseField name="experiment_type" type="enum">
+One of `price`, `packaging` or `null`.
+</ResponseField>
+<ResponseField name="products_to_select" type="[string]">
+In the case of a `packaging` experiment, the product API IDs to pick from the `product` object of the response to show
+to users.
+</ResponseField>
+<ResponseField name="treatment_group" type="enum">
+The experiment arm identifier, equal to `baseline` if experiment is run but baseline arm was selected.
+</ResponseField>
+</Expandable>
   
 </ResponseField>
 

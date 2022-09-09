@@ -6,14 +6,23 @@ description: "Notify Corrily that one of your customers has initiated a one-time
 
 <RequestExample>
 
-```bash Response
+```bash Bash
 curl --request POST \
      --url https://client.corrily.com/v1/charges \
      --header 'Accept: application/json' \
      --header 'Content-Type: application/json' \
      --data '
 {
-     "amount_refunded": 0
+     "amount": 50,
+     "amount_refunded": 0,
+     "created": 1662444537,
+     "currency": "USD",
+     "country": "US",
+     "origin": "stripe",
+     "origin_id": "sub_JaHy9Kl6ZMLvId",
+     "product": "monthly",
+     "status": "succeeded",
+     "user_id": "test_user"
 }
 '
 ```
