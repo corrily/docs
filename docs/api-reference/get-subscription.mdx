@@ -13,24 +13,24 @@ You do not need to use this endpoint if you have [granted Corrily automated acce
 
 ## Path Params
 
-<Param path="origin" type="string" required>
+<ParamField path="origin" type="string" required>
 
 The payment gateway that handled the subscription. Accepted values: `stripe`,
 `paypal`, `chargebee`
 
-</Param>
+</ParamField>
 
-<Param path="origin_id" type="string" required>
+<ParamField path="origin_id" type="string" required>
   A unique identifier for the subscription. This can be the ID that the payment
   gateway assigned to the subscription.
-</Param>
+</ParamField>
 
-<Param path="user_id" type="string" required>
+<ParamField path="user_id" type="string" required>
 
 The [User ID](../users/user-characteristics) that you provided when you
 [created the subscription](./create-subscription).
 
-</Param>
+</ParamField>
 
 <ResponseExample>
 

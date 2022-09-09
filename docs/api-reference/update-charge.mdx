@@ -15,30 +15,30 @@ curl --request POST \
 
 ## Path Params
 
-<Param path="origin" type="string" required>
+<ParamField path="origin" type="string" required>
   The payment gateway that handled the charge. Accepted values: `stripe`,
   `paypal`, `chargebee`.
-</Param>
+</ParamField>
 
-<Param path="origin_id" type="string" required>
+<ParamField path="origin_id" type="string" required>
   A unique identifier for the charge. This can be the ID that the payment
   gateway assigned to the charge.
-</Param>
+</ParamField>
 
-<Param path="user_id" type="string" required>
+<ParamField path="user_id" type="string" required>
 
 The [User ID](/api-reference/users/user-id) that you provided when you
 [created the charge](/api-reference/charges/create-charge).
 
-</Param>
+</ParamField>
 
 ## Body Params
 
-<Param body="amount" type="float">
+<ParamField body="amount" type="float">
   The amount (price) of the charge.
-</Param>
+</ParamField>
 
-<Param body="created" type="integer">
+<ParamField body="created" type="integer">
 
 A 10-digit (seconds) [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time)
 indicating when the charge was created. This timestamp should represent when
@@ -46,16 +46,16 @@ the charge was initialized, regardless of the status of the charge during the
 initialization. It's rare to need to update `created` after initially setting
 it.
 
-</Param>
+</ParamField>
 
-<Param body="currency" type="string">
+<ParamField body="currency" type="string">
 
 The three-letter [(ISO 4217)](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) currency code.
 
-</Param>
+</ParamField>
 
-<Param body="status" type="string">
+<ParamField body="status" type="string">
 
 The status of the charge. Accepted values: `pending`, `succeeded`, `failed`.
 
-</Param>
+</ParamField>

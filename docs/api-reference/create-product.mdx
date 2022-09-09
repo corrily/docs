@@ -65,38 +65,38 @@ curl --location -g --request POST 'https://client.corrily.com/v1/products' \
 
 ## Body Params
 
-<Param body="api_id" type="string" required>
+<ParamField body="api_id" type="string" required>
 
 The product identifier you will be calling this product with using [Corrily's price endpoint](../api-reference/calculate-price).
 
-</Param>
+</ParamField>
 
-<Param body="name" type="string" required>
+<ParamField body="name" type="string" required>
 
 The name of the product. Must be unique.
 
-</Param>
+</ParamField>
 
-<Param body="base_px" type="float" required>
+<ParamField body="base_px" type="float" required>
 
 The base price of the product in `USD`.
 
-</Param>
+</ParamField>
 
-<Param body="interval" type="string" required>
+<ParamField body="interval" type="string" required>
 
 A string value denoting how often to bill for a subscription. Possible values: `day`, `week`, `month`, `year`, `one_time`.
 
-</Param>
+</ParamField>
 
-<Param body="interval_count" type="integer" required>
+<ParamField body="interval_count" type="integer" required>
 
 An integer denoting how many intervals to bill for the. A monthly product would have `month` as interval and `1` as interval counts, etc.
 One time products should have an interval count of `1`.
 
-</Param>
+</ParamField>
 
-<Param body="country_prices" type="[object]">
+<ParamField body="country_prices" type="[object]">
 
 A list of one ore more of the below country price object.
 
@@ -120,9 +120,9 @@ The three-letter ISO4217 currency code of the price in this country.
 </ResponseField>
 </Expandable>
 
-</Param>
+</ParamField>
 
-<Param body="integrations" type="[object]">
+<ParamField body="integrations" type="[object]">
 
 A list of one or more of the below integration price objects. Not required in the case of a custom integration using the
 [Subscription](../api-reference/create-subscription) and
@@ -198,4 +198,4 @@ The matching [Recurly plan ID](https://developers.recurly.com/api/v2021-02-25/in
 </ResponseField>
 </Expandable>
 
-</Param>
+</ParamField>

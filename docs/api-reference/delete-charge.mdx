@@ -15,23 +15,23 @@ curl --request DELETE \
 
 ## Path Params
 
-<Param path="origin" type="string" required>
+<ParamField path="origin" type="string" required>
 
 The payment gateway that handled the charge. Accepted values: `stripe`,
 `paypal`, `chargebee`.
 
-</Param>
+</ParamField>
 
-<Param path="origin_id" type="string" required>
+<ParamField path="origin_id" type="string" required>
 
 A unique identifier for the charge. This can be the ID that the payment
 gateway assigned to the charge.
 
-</Param>
+</ParamField>
 
-<Param path="user_id" type="string" required>
+<ParamField path="user_id" type="string" required>
 
 The [User ID](../users/user-id) that you provided when you
 [created the charge](./create-charge).
 
-</Param>
+</ParamField>
