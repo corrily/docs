@@ -5,7 +5,8 @@ api: "DELETE https://client.corrily.com/v1/subscriptions/{user_id}/{origin}/{ori
 ---
 
 <Warning>
-  <h2>Custom payment gateway integrations only</h2>
+
+<h2>Custom payment gateway integrations only</h2>
 
 You do not need to use this endpoint if you have [granted Corrily automated access](../payment-gateways/integration-guide#recommended-provide-automated-access-of-subscription-and-charge-events) to your payment gateway's subscription and charge events.
 
@@ -13,17 +14,17 @@ You do not need to use this endpoint if you have [granted Corrily automated acce
 
 ## Body Params
 
-<Param body="amount" type="float" required>
+<ParamField body="amount" type="float" required>
 
 The amount (price) of the subscription.
 
-</Param>
+</ParamField>
 
-<Param body="country" type="enum">
+<ParamField body="country" type="string">
   Users's two-letter ISO3166 country code.
-</Param>
+</ParamField>
 
-<Param body="created" type="integer" required>
+<ParamField body="created" type="integer" required>
 
 A 10-digit (seconds) [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time)
 indicating when the subscription was created. This timestamp should represent
@@ -31,80 +32,80 @@ when the subscription was initialized, regardless of the status of the
 subscription during the initialization. It's rare to need to update created
 after initially setting it.
 
-</Param>
+</ParamField>
 
-<Param body="currency" type="enum" required>
+<ParamField body="currency" type="string" required>
 
 The three-letter ([ISO
 4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes)) currency code.
 
-</Param>
+</ParamField>
 
-<Param body="origin" type="string" required>
+<ParamField body="origin" type="string" required>
 
 The payment gateway that handled the subscription. Accepted values: `stripe`,
 `paypal`, `chargebee`
 
-</Param>
+</ParamField>
 
-<Param body="origin_id" type="string" required>
+<ParamField body="origin_id" type="string" required>
 
 A unique identifier for the subscription. This can be the ID that the payment
 gateway assigned to the subscription.
 
-</Param>
+</ParamField>
 
-<Param body="product" type="string" required>
+<ParamField body="product" type="string" required>
   A product ID string or a payment gateway integration object. Product IDs are
   created by Corrily when you set up your Corrily account. Email
   support@corrily.com if you don't know them. See the response of the [calculate
   price](../calculate-price) endpoint for an example of the structure of
   integration objects.
-</Param>
+</ParamField>
 
-<Param body="status" type="enum" required>
+<ParamField body="status" type="string" required>
 
 The status of the subscription. Accepted values: `pending`, `trialing`,
 `active`, `canceled`
 
-</Param>
+</ParamField>
 
-<Param body="user_id" type="string" required>
+<ParamField body="user_id" type="string" required>
   A User ID.
-</Param>
+</ParamField>
 
-<Param body="cancel_at" type="integer">
+<ParamField body="cancel_at" type="integer">
 
 A 10-digit (seconds) [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time)
 indicating when the subscription will be canceled. In other words, the
 customer will no longer have access to your service after this time. This
 parameter should only be provided when `status` is set to `canceled`.
 
-</Param>
+</ParamField>
 
-<Param body="canceled_at" type="integer">
+<ParamField body="canceled_at" type="integer">
 
 A 10-digit (seconds) unix timestamp indicating when customer expressed their
 intent to cancel. This parameter should only be provided when `status` is set
 to `canceled`.
 
-</Param>
+</ParamField>
 
-<Param body="trial_end" type="integer">
+<ParamField body="trial_end" type="integer">
 
 A 10-digit (seconds) [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time)
 indicating when the trial subscription ends. This parameter should only be
 provided when `status` is set to `trialing`.
 
-</Param>
+</ParamField>
 
-<Param body="trial_start" type="integer">
+<ParamField body="trial_start" type="integer">
 
 A 10-digit (seconds) [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time)
 indicating when the trial subscription begins. This parameter should only be
 provided when `status` is set to `trialing`.
 
-</Param>
+</ParamField>
 
 <ResponseExample>
 

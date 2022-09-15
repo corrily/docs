@@ -36,40 +36,40 @@ curl --location -g --request POST 'https://client.corrily.com/v1/products/monthl
 
 ## Path Params
 
-<Param body="{product_api_id}" type="string" required>
+<ParamField body="{product_api_id}" type="string" required>
 
 The name of the product. Must be unique.
 
-</Param>
+</ParamField>
 
 ## Body Params
 
-<Param body="name" type="string">
+<ParamField body="name" type="string">
 
 The name of the product. Must be unique.
 
-</Param>
+</ParamField>
 
-<Param body="base_px" type="float">
+<ParamField body="base_px" type="float">
 
 The base price of the product in `USD`.
 
-</Param>
+</ParamField>
 
-<Param body="interval" type="string">
+<ParamField body="interval" type="string">
 
 A string value denoting how often to bill for a subscription. Possible values: `day`, `week`, `month`, `year`, `one_time`.
 
-</Param>
+</ParamField>
 
-<Param body="interval_count" type="integer">
+<ParamField body="interval_count" type="integer">
 
 An integer denoting how many intervals to bill for the. A monthly product would have `month` as interval and `1` as interval counts, etc.
 One time products should have an interval count of `1`.
 
-</Param>
+</ParamField>
 
-<Param body="country_prices" type="[object]">
+<ParamField body="country_prices" type="[object]">
 
 A list of one ore more of the below country price object. _Country prices provided during an update call with overwrite any existing ones_.
 
@@ -86,9 +86,9 @@ A list of one ore more of the below country price object. _Country prices provid
 
 </Expandable>
 
-</Param>
+</ParamField>
 
-<Param body="integrations" type="[object]">
+<ParamField body="integrations" type="[object]">
 
 A list of one or more of the below integration price objects. _Integration objects provided during an update call with overwrite any existing ones_.
 
@@ -164,4 +164,4 @@ The matching [Recurly plan ID](https://developers.recurly.com/api/v2021-02-25/in
 </ResponseField>
 </Expandable>
 
-</Param>
+</ParamField>
