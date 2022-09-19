@@ -5,7 +5,7 @@ api: "GET https://client.corrily.com/v1/subscriptions/{user_id}/{origin}/{origin
 ---
 
 <Warning>
-  <h2>Custom payment gateway integrations only</h2>
+**Custom payment gateway integrations only**
 
 You do not need to use this endpoint if you have [granted Corrily automated access](../payment-gateways/integration-guide#recommended-provide-automated-access-of-subscription-and-charge-events) to your payment gateway's subscription and charge events.
 
@@ -14,10 +14,8 @@ You do not need to use this endpoint if you have [granted Corrily automated acce
 ## Path Params
 
 <ParamField path="origin" type="string" required>
-
-The payment gateway that handled the subscription. Accepted values: `stripe`,
-`paypal`, `chargebee`
-
+  The payment gateway that handled the subscription. Accepted values: `stripe`,
+  `paypal`, `chargebee`
 </ParamField>
 
 <ParamField path="origin_id" type="string" required>
@@ -26,10 +24,8 @@ The payment gateway that handled the subscription. Accepted values: `stripe`,
 </ParamField>
 
 <ParamField path="user_id" type="string" required>
-
-The [User ID](../users/user-characteristics) that you provided when you
-[created the subscription](./create-subscription).
-
+  The [User ID](../users/user-characteristics) that you provided when you
+  [created the subscription](./create-subscription).
 </ParamField>
 
 <ResponseExample>

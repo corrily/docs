@@ -26,10 +26,8 @@ curl --request POST \
 </ParamField>
 
 <ParamField path="user_id" type="string" required>
-
-The [User ID](/api-reference/users/user-id) that you provided when you
-[created the charge](/api-reference/charges/create-charge).
-
+  The [User ID](/api-reference/users/user-id) that you provided when you
+  [created the charge](/api-reference/charges/create-charge).
 </ParamField>
 
 ## Body Params
@@ -39,23 +37,18 @@ The [User ID](/api-reference/users/user-id) that you provided when you
 </ParamField>
 
 <ParamField body="created" type="integer">
-
-A 10-digit (seconds) [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time)
-indicating when the charge was created. This timestamp should represent when
-the charge was initialized, regardless of the status of the charge during the
-initialization. It's rare to need to update `created` after initially setting
-it.
-
+  A 10-digit (seconds) [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time)
+  indicating when the charge was created. This timestamp should represent when
+  the charge was initialized, regardless of the status of the charge during the
+  initialization. It's rare to need to update `created` after initially setting
+  it.
 </ParamField>
 
 <ParamField body="currency" type="string">
-
-The three-letter [(ISO 4217)](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) currency code.
-
+  The three-letter [(ISO
+  4217)](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) currency code.
 </ParamField>
 
 <ParamField body="status" type="string">
-
-The status of the charge. Accepted values: `pending`, `succeeded`, `failed`.
-
+  The status of the charge. Accepted values: `pending`, `succeeded`, `failed`.
 </ParamField>

@@ -15,9 +15,7 @@ See [User characteristics](../users/user-characteristics).
 </ParamField>
 
 <ParamField body="user_id" type="string" required>
-
-A [User ID](../users/user-ids).
-
+  A [User ID](../users/user-ids).
 </ParamField>
 
 ## Response
@@ -25,7 +23,6 @@ A [User ID](../users/user-ids).
 <ResponseField name="status" type="string" />
 
 <RequestExample>
-
 ```bash Bash
 curl --request POST \
      --url https://client.corrily.com/v1/identify \
@@ -69,11 +66,9 @@ print(response.text)
 </RequestExample>
 
 <ResponseExample>
-
 ```json Example
 {
   "status": "ok"
 }
 ```
-
 </ResponseExample>
