@@ -6,37 +6,35 @@ auth: "X-Api-Key"
 ---
 
 <RequestExample>
-
 ```bash Bash
 
 curl --location -g --request POST 'https://client.corrily.com/v1/products' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "api_id": "monthly",
-    "name": "Monthly Product",
-    "base_px": 10,
-    "interval": "month",
-    "interval_count": 1,
-    "country_prices": [
-        {
-            "country": "ES",
-            "amount": 50,
-            "currency": "EUR"
-        }
-    ],
-    "integrations": [
-        {
-            "type": "stripe",
-            "product_id": "my_stripe_pid"
-        }
-    ]
+"api_id": "monthly",
+"name": "Monthly Product",
+"base_px": 10,
+"interval": "month",
+"interval_count": 1,
+"country_prices": [
+{
+"country": "ES",
+"amount": 50,
+"currency": "EUR"
+}
+],
+"integrations": [
+{
+"type": "stripe",
+"product_id": "my_stripe_pid"
+}
+]
 }'
-```
 
+````
 </RequestExample>
 
 <ResponseExample>
-
 ```json Example
 {
   "message": "Successfully created product.",
@@ -59,143 +57,113 @@ curl --location -g --request POST 'https://client.corrily.com/v1/products' \
     }
   ]
 }
-```
+````
 
 </ResponseExample>
 
 ## Body Params
 
 <ParamField body="api_id" type="string" required>
-
-The product identifier you will be calling this product with using [Corrily's price endpoint](../api-reference/calculate-price).
-
+  The product identifier you will be calling this product with using [Corrily's
+  price endpoint](../api-reference/calculate-price).
 </ParamField>
 
 <ParamField body="name" type="string" required>
-
-The name of the product. Must be unique.
-
+  The name of the product. Must be unique.
 </ParamField>
 
 <ParamField body="base_px" type="float" required>
-
-The base price of the product in `USD`.
-
+  The base price of the product in `USD`.
 </ParamField>
 
 <ParamField body="interval" type="string" required>
-
-A string value denoting how often to bill for a subscription. Possible values: `day`, `week`, `month`, `year`, `one_time`.
-
+  A string value denoting how often to bill for a subscription. Possible values:
+  `day`, `week`, `month`, `year`, `one_time`.
 </ParamField>
 
 <ParamField body="interval_count" type="integer" required>
-
-An integer denoting how many intervals to bill for the. A monthly product would have `month` as interval and `1` as interval counts, etc.
-One time products should have an interval count of `1`.
-
+  An integer denoting how many intervals to bill for the. A monthly product
+  would have `month` as interval and `1` as interval counts, etc. One time
+  products should have an interval count of `1`.
 </ParamField>
 
 <ParamField body="country_prices" type="[object]">
-
 A list of one ore more of the below country price object.
+  <Expandable title="<country_price>">
+    <ResponseField name="country" type="enum" required>
+    Two-letter ISO3166 country code.
+    </ResponseField>
 
-<Expandable title="<country_price>">
-<ResponseField name="country" type="enum" required>
+    <ResponseField name="amount" type="float" required>
+      The price of the product in this country.
+    </ResponseField>
 
-Two-letter ISO3166 country code.
+    <ResponseField name="currency" type="enum" required>
+    The three-letter ISO4217 currency code of the price in this country.
+    </ResponseField>
 
-</ResponseField>
-
-<ResponseField name="amount" type="float" required>
-
-The price of the product in this country.
-
-</ResponseField>
-
-<ResponseField name="currency" type="enum" required>
-
-The three-letter ISO4217 currency code of the price in this country.
-
-</ResponseField>
-</Expandable>
-
+  </Expandable>
 </ParamField>
 
 <ParamField body="integrations" type="[object]">
-
 A list of one or more of the below integration price objects. Not required in the case of a custom integration using the
 [Subscription](../api-reference/create-subscription) and
 [Charge](../api-reference/create-subscription) endpoints where Corrily product IDs are passed to alert us of
 payment gateway revenue activity.
-
 <Expandable title="<stripe>">
-<ResponseField name="type" type="string" required>
-
-Should be set to equal `stripe`.
-
-</ResponseField>
-<ResponseField name="stripe_product_id" type="string" required>
-
-The matching [Stripe product ID](https://stripe.com/docs/api/products/object#product_object-id).
-
-</ResponseField>
+  <ResponseField name="type" type="string" required>
+    Should be set to equal `stripe`.
+  </ResponseField>
+  <ResponseField name="stripe_product_id" type="string" required>
+  The matching [Stripe product ID](https://stripe.com/docs/api/products/object#product_object-id).
+  </ResponseField>
 </Expandable>
 
 <Expandable title="<stripe_with_interval>">
-<ResponseField name="type" type="stripe_with_interval" required>
-
-Should be set to equal `stripe_with_interval`.
-
-</ResponseField>
-<ResponseField name="stripe_product_id" type="string" required>
-
-The matching [Stripe product ID](https://stripe.com/docs/api/products/object#product_object-id).
-
-</ResponseField>
-<ResponseField name="interval" type="enum" required>
-
-The frequency at which a subscription is billed. One of `day`, `week`, `month` or `year`.
-Sometimes Stripe products actually encompass more than what Corrily would consider a product. For example,
-the Stripe product for a company's "Pro Plan" might have two
-[Price objects](https://stripe.com/docs/api/prices/object)
-one for the monthly version of the plan, the other for its annual version. Meanwhile, Corrily would consider
-these to be two distinct products `pro_monthly` and `pro_annual`. To capture such differences you can pass
-a `stripe_with_interval` integration object which can help separate such cases.
-
-</ResponseField>
-<ResponseField name="interval_count" type="integer" required>
-
-The number of intervals (specified in the interval attribute) between subscription billings.
-For example, interval=month and interval_count=3 bills every 3 months.
-
-</ResponseField>
+  <ResponseField name="type" type="stripe_with_interval" required>
+    Should be set to equal `stripe_with_interval`.
+  </ResponseField>
+  <ResponseField name="stripe_product_id" type="string" required>
+    The matching [Stripe product
+    ID](https://stripe.com/docs/api/products/object#product_object-id).
+  </ResponseField>
+  <ResponseField name="interval" type="enum" required>
+    The frequency at which a subscription is billed. One of `day`, `week`,
+    `month` or `year`. Sometimes Stripe products actually encompass more than
+    what Corrily would consider a product. For example, the Stripe product for a
+    company's "Pro Plan" might have two [Price
+    objects](https://stripe.com/docs/api/prices/object) one for the monthly
+    version of the plan, the other for its annual version. Meanwhile, Corrily
+    would consider these to be two distinct products `pro_monthly` and
+    `pro_annual`. To capture such differences you can pass a
+    `stripe_with_interval` integration object which can help separate such
+    cases.
+  </ResponseField>
+  <ResponseField name="interval_count" type="integer" required>
+    The number of intervals (specified in the interval attribute) between
+    subscription billings. For example, interval=month and interval_count=3
+    bills every 3 months.
+  </ResponseField>
 </Expandable>
 
 <Expandable title="<chargebee>">
-<ResponseField name="type" type="string" required>
-
-Should be set to equal `chargebee`.
-
-</ResponseField>
-<ResponseField name="chargebee_plan_id" type="string" required>
-
-The matching [Chargebee plan ID](https://apidocs.chargebee.com/docs/api/plans?prod_cat_ver=1#plan_id).
-
-</ResponseField>
+  <ResponseField name="type" type="string" required>
+    Should be set to equal `chargebee`.
+  </ResponseField>
+  <ResponseField name="chargebee_plan_id" type="string" required>
+    The matching [Chargebee plan
+    ID](https://apidocs.chargebee.com/docs/api/plans?prod_cat_ver=1#plan_id).
+  </ResponseField>
 </Expandable>
 
 <Expandable title="<recurly>">
-<ResponseField name="type" type="string" required>
-
-Should be set to equal `recurly`.
-
-</ResponseField>
-<ResponseField name="chargebee_plan_id" type="string" required>
-
-The matching [Recurly plan ID](https://developers.recurly.com/api/v2021-02-25/index.html#operation/create_plan).
-
-</ResponseField>
+  <ResponseField name="type" type="string" required>
+    Should be set to equal `recurly`.
+  </ResponseField>
+  <ResponseField name="chargebee_plan_id" type="string" required>
+    The matching [Recurly plan
+    ID](https://developers.recurly.com/api/v2021-02-25/index.html#operation/create_plan).
+  </ResponseField>
 </Expandable>
 
 </ParamField>

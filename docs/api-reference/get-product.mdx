@@ -7,7 +7,6 @@ description: "Retrieve the details of a single Corrily product."
 <RequestExample>
 
 ```bash Bash
-
 curl --location --request GET 'https://default.corrily.com/mainapi/v1/products/monthly'
 ```
 
@@ -16,28 +15,27 @@ curl --location --request GET 'https://default.corrily.com/mainapi/v1/products/m
 <ResponseExample>
 
 ```json Example
-
 {
-   "message": "Successfully retrieved product.",
-   "success": true,
-   "api_id": "monthly",
-   "name": "Monthly Product",
-   "base_px": 10.0,
-   "max_px": 999.0,
-   "min_px": 0.0,
-   "country_prices": [
-       {
-           "country": "ES",
-           "local_price": 50.0,
-           "currency": "EUR"
-       }
-   ],
-   "integrations": [
-       {
-           "type": "stripe",
-           "stripe_product_id": "my_stripe_pid"
-       }
-   ]
+  "message": "Successfully retrieved product.",
+  "success": true,
+  "api_id": "monthly",
+  "name": "Monthly Product",
+  "base_px": 10.0,
+  "max_px": 999.0,
+  "min_px": 0.0,
+  "country_prices": [
+    {
+      "country": "ES",
+      "local_price": 50.0,
+      "currency": "EUR"
+    }
+  ],
+  "integrations": [
+    {
+      "type": "stripe",
+      "stripe_product_id": "my_stripe_pid"
+    }
+  ]
 }
 ```
 
@@ -46,7 +44,5 @@ curl --location --request GET 'https://default.corrily.com/mainapi/v1/products/m
 ## Path Params
 
 <ParamField path="product_api_id" type="string" required>
-
-The api ID of the product.
-
+  The api ID of the product.
 </ParamField>
