@@ -1,13 +1,27 @@
 ---
 title: "Set Prices"
-description: "Setting prices of Corrily products."
+description: "An overview of how Corrily prices are set."
 ---
 
 Product prices can be further specified in the dashboard's Pricing Control Centre which a tabular view of all prices.
 
 When setting prices, Corrily follows a hierarchy of precedence, as seen in the image below. Country prices take precedence
 over product base prices. If a user a product price is being fetched for belong to an audience that has a price, then
- that audience's price will take precedence over a country price tied to where the user is from. Finally, experimental
- prices take precedence over all other prices apart from direct price overrides.
+that audience's price will take precedence over a country price tied to where the user is from. Finally, experimental
+prices take precedence over all other prices apart from direct price overrides.
 
 <img src="../img/price-hierarchy1.png" width="200" />
+
+
+### Locking prices to users
+
+When products are requests for users using the [prices endpoint](api-reference/calculate-price) the returned prices are
+locked-in by Corrily and all subsequent calls (unless overriden) will return the same prices.
+
+[Mention IP logic]
+
+### Other actions that impact price
+
+Additionally, other actions might affect the price fetched. These include coupon applications, which take either a fixed amount or a
+percentage off a price; rounding rules, which shift prices to look nice; or requests for a locked price to be displayed
+in another currency.
