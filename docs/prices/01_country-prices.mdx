@@ -5,14 +5,14 @@ description: "Setting prices across countries."
 
 You can use Corrily to set prices in specific countries. As an example, let's say we wish to serve a local price for
 user coming in from Japan (`JP`). This can be done by going to the **Price Control Centre** and setting local prices for
-products in Japanese Yen (`JPY`).
+products in Japanese Yen (`JPY`)
 
 
 ### How Corrily tells where a user is from
 When calling Corrily's API you can either:
-* pass an explicit two-letter country code to the `country` parameter.
-* pass an IPv4/6 address to the `ip` parameter which Corrily resolves to the correct country.
-* pass a `get_ip_from_request:true` parameter which lets Corrily know to find the IP address in the `X-Forwarded-For` header field.
+* Pass an explicit two-letter country code to the `country` parameter.
+* Pass an IPv4/6 address to the `ip` parameter which Corrily resolves to the correct country.
+* Pass a `get_ip_from_request:true` parameter which lets Corrily know to find the IP address in the `X-Forwarded-For` header field.
 
 
 
