@@ -66,6 +66,7 @@
     {
       "group": "Setting Prices",
       "pages": [
+        "setup/02_set-prices",
         "prices/01_country-prices",
         "prices/02_audience-prices",
         "prices/03_experiment-prices",
