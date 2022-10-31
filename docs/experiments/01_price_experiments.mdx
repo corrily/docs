@@ -3,6 +3,32 @@ title: "Price Experiments"
 description: "How Corrily runs price experiments."
 ---
 
-## Hello world!
+Corrily's price experiments allow you to do price discovery, test price elasticity and optimize prices for key KPIs such
+as ARPU, LTV and Conversion. With Corrily's price experiments, you can test:
 
+* Individual product and subscription prices
+* Relative pricing - for e.g. if you offer a monthly, 3 months and an annual subscription of your product, what price sets
+(combination of individual prices) optimize your objectives
+* Price formats and currencies i.e. for e.g. is it better to show prices such as $25.00, or 25.50 USD. Is it better to charge
+users in Brazil in Brazilian Reales (BRL) or in USD?
+
+<h3> How to run a price experiment?</h3>
+
+* To set up a price experiment, you need to select the the **experiment objective**
+* Select which products or combination of **products to experiment on**
+* Define which **countries or audiences** should be included in the experiment i.e. who is part of the experiment
+* **Define price arms:**
+    * If you have product(s) with an existing price(s), those baseline prices form your `control group`
+    * New set of prices that you want to test form your `experiment group`
+    * `Granularity` ie. number of experimental price arms that you want to test
+    * You can set specific prices for each price arm that you want to test for e.g. you may want to test
+    `Price Arm1 (ProductA: $10, ProductB: $100)`, `Price Arm2 (ProductA: $10, ProductB, $120)`, and `Price Arm3 (ProductA: $15, ProductB, $150)`
+    * If you are not sure which prices you should be testing, Corrily can automatically generate these price arms
+    based on specific upper and lower bounds of prices for each product for e.g. never test a price lower than $12 and higher than
+    $20 for ProductA. Corrily automatically selects the experiment granularity based on your traffic volume
+    *Select the traffic allocation strategy i.e. decide whether you want to manually set traffic allocation across each
+    experiment treatment, or let Corrily automatically manage traffic allocation
+* Provide additional information such as **historical churn data** for your products
+* Once an experiment is set up, you can `Submit for Review`
+* Corrily's experimentation team reviews and takes the experiment Live
 
