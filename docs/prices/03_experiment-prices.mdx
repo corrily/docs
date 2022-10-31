@@ -3,6 +3,23 @@ title: "Experimental Prices"
 description: "Setting experimental prices."
 ---
 
-## Hello world!
+When a user falls under an active experiment, they can be served one of the pre-defined experiment treatment prices,
+or a personalized price.
+
+Few things to note about how Corrily treats experimental prices:
+
+* Corrily's machine learning models determine which what price does a user gets assigned
+* A uniquely identifiable user, whether using an `IP` or a `custom ID` is locked to an experiment treatment i.e. as long
+as Corrily can identify them, they will be served the same experiment treatment.
+* Certain experiment prices may be disabled during an active experiment if they are under-performing (when traffic allocation
+is set to automatic)
+* To check which users have been assigned what prices, anyone with `support` or higher privileges on the Corrily dashboard
+can key in the `User ID` on the *Users* page to see what experiment treatment were they assigned.
+* You can edit and override a user's price here so they no longer see an experimental treatment
+* For any user, when you call Corrily with the `override:true` flag, it resets the old price and a new price may be assigned
+at that point in time. The flag is local to the call i.e. next time you wish to reset a user's price, you would need to pass the
+flag again.
+* Once an experiment is completed, experimented-on users will continue seeing control or experiment prices. You can move them
+to a new price using Corrily' dashboard.
 
 
