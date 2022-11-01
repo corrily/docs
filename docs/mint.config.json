@@ -43,7 +43,8 @@
       "pages": [
         "setup/01_configure-products",
         "setup/02_set-prices",
-        "setup/03_integrate-payment-gateways",
+        "setup/03a_charging-users-corrily-prices",
+        "setup/03b_integrate-payment-gateways",
         "setup/04_launch-checklist",
         "setup/05_monitoring"
       ]

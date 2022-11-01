@@ -1,0 +1,28 @@
+---
+title: "Charging Users Corrily Prices"
+description: "How to charge your users Corrily-generated prices."
+---
+
+Corrily has the ability to return all sorts of prices. These might be specific to a country, or an audience, or they could
+be an experimental price. Regardless, the universe of possible Corrily prices is often greater than the base product or plan prices
+you have set in your payment gateway. Below are the ways we suggest you accommodate this in both **web** and **mobile**.
+
+### Web
+
+When integrating with web payment gateways or subscription management services the Corrily proposed price can be passed as
+a price override. Users are still subscribed to the same plan or purchase the same product, but with a custom price different
+to the gateway-defined base price.
+
+Corrily provides the exact amounts and currencies you should charge in its [integration objects](http://localhost:3000/api-reference/calculate-price#body-params) field.
+
+You can read more about how price overrides work in different platforms:
+- Stripe (via [payment intents](https://stripe.com/docs/payments/payment-intents#best-practices),
+[subscription creation](https://stripe.com/docs/api/subscriptions/object#subscription_object-items-data-price-custom_unit_amount),
+or [checkout sessions](https://stripe.com/docs/api/checkout/sessions/create#create_checkout_session-line_items-price_data-unit_amount)
+- [Recurly](https://developers.recurly.com/api/v2021-02-25/index.html#operation/create_subscription) (see `unit_amount`)
+- [Chargebee](https://apidocs.chargebee.com/docs/api/subscriptions?prod_cat_ver=2#create_subscription_for_items_subscription_items_unit_price_in_decimal)
+- [Braintree](https://developer.paypal.com/braintree/docs/reference/request/subscription/create#price)
+- [Adyen](https://docs.adyen.com/online-payments/classic-integrations/api-integration-ecommerce/recurring-payments)
+
+
+### Mobile
