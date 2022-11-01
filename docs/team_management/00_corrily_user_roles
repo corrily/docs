@@ -1,8 +1,0 @@
----
-title: "Corrily Roles"
-description: "An introduction to team management within Corrily."
----
-
-Corrily's dashboard supports role-based access so you can invite team members to the dashboard without worrying about giving
-users (such as those on the support team) elevated privileges. Currently, there is no hard limit on the number of users you can invite
-to Corrily's dashboard. Here are the roles that we currently support: `Admin`, `Member,`Support`, `Support(read-only)`

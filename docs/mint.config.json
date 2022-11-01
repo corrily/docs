@@ -96,7 +96,7 @@
     {
       "group": "Team Management",
       "pages": [
-        "team_management/00_corrily_user_roles.mdx"
+        "team_management/00_corrily_user_roles"
       ]
     },
     {
