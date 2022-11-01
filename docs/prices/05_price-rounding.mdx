@@ -1,8 +1,34 @@
 ---
 title: "Price Rounding"
-description: "Applying rounding strategies to ephemeral prices."
+description: "Applying rounding strategies"
 ---
 
-## Hello world!
+
+### Applying rounding to base prices to quickly populate country prices
+
+Rounding can be applied on the dashboard when populating country prices. If you know the base price of a product and want
+to quickly localise its price, in local currencies, across different countries you'll need to decide how best local prices
+should be rounded. These "bulk" actions can be launched in the Pricing Control Centre section of the dashboard and generally
+follow the same rules as the rounding strategies described in the below section.
 
 
+### Applying rounding strategies to ephemeral prices
+
+[Ephemeral prices](prices/04_ephemeral-prices) are often not well rounded, and need to have rounding applied to them.
+For example, a monthly product selling at `9.99` will be priced at `7.4925` after a 25% coupon application. To bring
+this price back to looking nice a rounding strategy can be applied to shift it to a nice number like `7.49` or `7.50`.
+
+The rounding strategies Corrily supports are governed by a simple language which is best described through example.
+Imagine you want to round up to `.25`, `.49`, `.75` or `.99` for prices between 0 and anything less than 100 and for
+anything equal to 100 or more you want to round to the nearest multiple of 50. A rounding rule to define this would then
+be:
+
+- `0_<100:f25_f49_f75_f99_nearest|>=100_inf:multiple_50_up`
+
+Notice how the rule is split into segments delimited by `|` each of which contains a range `0_<100` and `>=100_inf` followed by
+`:` and a **range body** which can either be:
+- a sequence of numbers to round to (`f25_f49_f75_f99` where `f` denotes a float, i.e. the ability to round to say `4.59`)
+- a function such as `multiple_50` (the other important function is `sigfig_<n_sigfigs>` which rounds to the nearest number of
+significant figures.
+
+Finally, each range body must end with either `_down`, `_up` or `_nearest` which defined whether numbers are rounder down, up or to the nearest number defined in the **range body**.
