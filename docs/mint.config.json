@@ -94,6 +94,12 @@
       ]
     },
     {
+      "group": "Team Management",
+      "pages": [
+        "team_management/00_corrily_user_roles"
+      ]
+    },
+    {
       "group": "Integration Guides",
       "pages": [
         "integrations/01_payment-gateways",
