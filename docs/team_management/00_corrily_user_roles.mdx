@@ -5,7 +5,7 @@ description: "An introduction to team management within Corrily."
 
 Corrily's dashboard supports role-based access so you can invite team members to the dashboard without worrying about giving
 users (such as those on your support team) elevated privileges. Currently, there is no hard limit on the number of users
-you can invite to Corrily's dashboard. Here are the roles that we currently support: `Admin`,`Member`,`Support`,
+you can invite to Corrily's dashboard. Here are the roles that we currently support: `Admin`, `Member`, `Support`,
 `Support(read-only)`
 
 <h3>Role-based access </h3>
@@ -13,9 +13,15 @@ you can invite to Corrily's dashboard. Here are the roles that we currently supp
 * **Admins:** Admins have access to the entire dashboard, including the ability to change prices, start/pause/stop experiments,
 add/remove users from the dashboard. Admin role is recommended for anyone who needs to make changes to the pricing using Corrily's
 platform - such as pricing managers, business planner, product and growth team etc.
+
 * **Members:** Members have read-only access to the entire dashboard. While members cannot start/stop experiments, they can
 review experiment results, search and interact with prices
+
 * **Support:** Support role is useful for customer-facing support team, such as L2 or L1 support. Support team members only
-access to the `Users` page on the dashboard. They can key-in *User IDs* to look up prices for specific users, and edit the prices
-* **Support(read-only):**: Read-only support roles is best suited for L3 support. They can They can key-in *User IDs* to
-look up prices for specific users, but cannot change those prices.
+access to the `Users` page on the dashboard. On the Users page, they can look up users by keying in their *User IDs*
+(internal to your system), and override the price and currency. This is helpful in edge cases where a particular user may have
+been served a price that they were not expecting, and subsequently create a support request. Instead of escalating the request
+to their pricing team, support team members with the right privileges can assign them another price.
+
+* **Support(read-only):**: Read-only support roles is best suited for L3 support.They also have access just to the `Users`
+page on the dashboard. They can key-in *User IDs* to look up prices for specific users, but cannot change those prices.
