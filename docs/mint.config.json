@@ -89,7 +89,7 @@
         "experiments/00_experiments",
         "experiments/01_price_experiments",
         "experiments/02_packaging_experiments",
-        "experiments/03_picking_who_to_experiment_on",
+        "experiments/03_experiment_design",
         "experiments/04_experiment_analytics",
         "experiments/05_recommendation_engine"
       ]
