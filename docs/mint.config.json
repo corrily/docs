@@ -32,30 +32,83 @@
   "navigation": [
     {
       "group": "Basics",
-      "pages": ["basics/quickstart-guide", "basics/setup"]
+      "pages": [
+        "basics/01_what-is-corrily",
+        "basics/03_api-keys-and-authentication"
+      ]
+    },
+    {
+      "group": "Setup",
+      "pages": [
+        "setup/01_configure-products",
+        "setup/02_set-prices",
+        "setup/03a_charging-users-corrily-prices",
+        "setup/03b_integrate-payment-gateways"
+      ]
     },
     {
       "group": "Users",
       "pages": [
-        "users/user-ids",
-        "users/user-characteristics",
-        "users/handling-anonymous-users"
+        "users/01_users",
+        "users/02_user-features",
+        "users/03_handling-anonymous-users"
       ]
     },
     {
-      "group": "Pricing",
+      "group": "Segmentation",
       "pages": [
-        "pricing/price-optimization-overview",
-        "pricing/pricing-page-integration-guide",
-        "pricing/calculate-price-api-examples"
+        "segmentation/01_audiences",
+        "segmentation/02_attributes"
       ]
     },
     {
-      "group": "Payment Gateways",
+      "group": "Setting Prices",
       "pages": [
-        "payment-gateways/overview",
-        "payment-gateways/integration-guide",
-        "payment-gateways/sample-app-guide"
+        "setup/02_set-prices",
+        "prices/01_country-prices",
+        "prices/02_audience-prices",
+        "prices/03_experiment-prices",
+        "prices/04_ephemeral-prices",
+        "prices/05_price-rounding",
+        "prices/06_fx-rates"
+      ]
+    },
+    {
+      "group": "Coupons & Campaigns",
+      "pages": [
+        "coupons_and_campaigns/01_discount-coupons",
+        "coupons_and_campaigns/02_campaigns"
+      ]
+    },
+    {
+      "group": "Experiments",
+      "pages": [
+        "experiments/00_experiments",
+        "experiments/01_price_experiments",
+        "experiments/02_packaging_experiments",
+        "experiments/03_experiment_design",
+        "experiments/04_experiment_analytics"
+      ]
+    },
+    {
+      "group": "Team Management",
+      "pages": [
+        "team_management/00_corrily_user_roles",
+         "team_management/01_inviting_users"
+      ]
+    },
+    {
+      "group": "Integration Guides",
+      "pages": [
+        "integrations/00_web-revenue-events-webhook",
+        "integrations/01_custom-web-integration"
+      ]
+    },
+    {
+      "group": "Security and Privacy",
+      "pages": [
+         "security_privacy/00_security_compliance",
+         "security_privacy/01_GDPR"
       ]
     },
     {

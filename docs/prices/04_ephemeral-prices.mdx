@@ -1,0 +1,20 @@
+---
+title: "Fixed vs. Ephemeral prices"
+description: "The concept of ephemeral prices in Corrily."
+---
+
+Corrily price can be either **fixed** or **ephemeral**.
+
+### Fixed Prices
+A fixed price is a set *\<amount, currency\>* pair that is set
+via the dashboard, or one of our CRUD API endpoints, and identifiable by a *price_id* prefixed by `price_<id>`. The amount set will match exactly the
+display values returned by Corrily's API.
+
+### Ephemeral Prices
+Ephemeral prices are the product of price transformations applied to fixed prices such as explicit applications of
+rounding, calls for the price to be displayed in another currency, coupon applications, or price overrides.
+Ephemeral prices too are identifiable by price IDs but these are prefixed by `eph_price_<id>`.
+
+
+
+

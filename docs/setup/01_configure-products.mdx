@@ -1,0 +1,21 @@
+---
+title: "Configure Products"
+description: "Configuring Corrily products."
+---
+
+A Corrily product represents a sellable item, such as a subscription or a one-time purchase.[^1]
+
+To create a product go to the `Products` tab and hit `Create Product` where you'll need to define:
+
+* **Base price** representing the default price to display for this product in the absence of any other prices.[^2]
+* **Interval** and **Interval Count** if the product represents a subscription.[^3] If it's a one-time purchase, you can set **Interval** to equal `one_time`.
+* **API ID**, the unique identifier you will use to call for this product.
+* Optionally, you can also associate product IDs from web or mobile payment gateways (e.g. `Stripe` or `Apple App Store`) to the Corrily product. This step is not required
+and can be done later in the `Integration` tab.
+
+Footnotes:
+[^1]: At the moment Corrily does not support metered products.
+[^2]: At the moment, only base prices in `USD` are allowed. We plan to support other base currencies soon. You can still set prices
+in other currencies when localizing currencies.
+[^3]: `Interval` can be one of `day`, `week`, `month`, or `year`. The `Interval Count` represents the number of periods of
+`Interval` that need to pass before the product is charged for again.

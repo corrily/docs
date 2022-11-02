@@ -1,0 +1,93 @@
+---
+title: "Launch checklist"
+description: "A launch checklist to be used before going live with Corrily."
+---
+
+Before you show prices on your pricing interfaces using Corrily and start experimentation, please review this launch
+checklist to make sure everything is set-up properly:
+
+- **Create Corrily products** for every product that you wish to integrate with us. If you have a large catalog of products,
+we recommend using a CSV file to upload this to Corrily, otherwise you can easily create these on our dashboard.
+
+    **TIP:** If you have created redundant products in the past on your subscription management or commerce platform in
+    order to experiment with different prices or simply serve your product in different currencies, **Corrily can help with
+    simplification of your backend product catalog**. Since Corrily can serve a product across diffeernt prices and currencies,
+    we often find our customers abstracting that complexity over to Corrily
+
+- Gather what your **base price for the products** are - these would be default prices that you want to serve for your product.
+You can send this info to Corrily using a CSV while uploading products or use the dashboard.
+
+- Gather your **master pricing sheet**. Usually your pricing team will have a list of country prices and what currency you
+are charging users in. Upload this information to Corrily using a CSV.
+
+- Gather your **existing FX rates** if you are converting prices from your base currency to local currencies.
+
+- Identify and **integrate Corrily API on all of your pricing interfaces** for a consistent user experience
+
+- **Backfill old users** who Corrily doesn't know about. While this is an optional step, it helps Corrily's models learn faster
+and also make sure that we can lock the prices for your existing paying user base. This can be alternatively achieved by letting
+Corrily know while calling our API when a particular user is an old user, or explicitly asking a user to be excluded from an experiment
+
+- Integrate Corrily in a **staging or sandbox environment** and test with a few user accounts to ensure prices are being served
+correctly.
+    **TIP**: Test your pricing interface with a few anonymous/unauthenticated visits using different IPs, as well as different
+    logged-in user accounts (old and new) to smoke-test the expected prices. Corrily can also create a staging set-up for
+    your organization at our end.
+
+- **Start small** with ~1-2% of your traffic on Day 1, monitor for a day, and if everything looks good - open the flood-gates to
+100% of your traffic
+
+- Once integrated and live, you are all set to run experiments on our platform.
+
+## Prepare your product information
+
+Gather the following information about your product/service:
+
+- **Product name**: A human-readable, descriptive name for the product/service
+- **Base price(USD)**: The default price of your product. Currently, Corrily only supports USD but will soon be supporting
+other currencies
+- **Recurring Interval:** What's the recurrence interval for your product (e.g. `Monthly`, `Yearly`, or `One time`)
+- **Interval Frequency:** How frequently the product/service is charged for e.g a product with a `monthly` interval, and interval
+count of 3 means that you are charging users every 3 months.
+- **API ID**: The identifier that you'll provide when calling Corrily's REST API endpoints
+- **Cents**: Whether you display your price with cents or not (e.g. $20 or $19.99)
+
+If you have a subscription service with multiple billing plans, you should provide this information for each billing plan.
+
+Example:
+
+| Product/Service Name | Base Price (USD) | Recurrence Interval | API ID        | Cents |
+| -------------------- | ---------------- | ------------------- | ------------- | ----- |
+| Monthly Plan         | 10               | Month               | monthly_plan  | True  |
+| Annual Plan          | 60               | Year                | annual_plan   | True  |
+| Lifetime Plan        | 600              | One-Off             | lifetime_plan | False |
+
+
+## Notify Corrily of payment gateway events
+
+As explained in [Price optimization overview](../pricing/price-optimization-overview), Corrily needs to be notified of subscription
+and charge events if you're doing price experimentation. The easiest way is through OAuth and just requires 2 clicks.
+After access is granted, your payment gateway automatically notifies Corrily of subscription and charge events.
+Otherwise you can [manually notify Corrily](../payment-gateways/integration-guide#manually-notify-corrily-of-subscription-and-charge-events).
+
+If you're using Stripe and would like to get your Corrily integration started now, click the **Connect with Stripe** button to grant Corrily read-only access to your Stripe subscription and charge events.
+
+<a
+  target="_blank"
+  href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_IvVOYSONFblYt8sgK4ZTee6JwJSwdNGD&scope=read_only"
+>
+
+  <button
+    style={{
+      backgroundColor: "#230e7d",
+      color: "#fff",
+      padding: "12px 15px",
+      fontSize: "18px",
+      border: "none",
+      borderRadius: "4px",
+    }}
+  >
+    Connect with Stripe
+  </button>
+  
+</a>

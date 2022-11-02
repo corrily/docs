@@ -1,0 +1,52 @@
+---
+title: "Corrily Experimentation Platform"
+description: "An introduction to running experiments with Corrily"
+---
+
+<h3> Why use Corrily for your pricing, packaging and discount experiments?</h3>
+
+Corrily provides an end to end experimentation platform for all things pricing, packaging,  discounts and promotions.
+Corrily's experimentation platform abstracts the complexity involved in running experiments in-house, and manages
+everything for you. Moreover, our **machine learning models are pre-trained, and continuously improving** over time based
+on your business-specific data and anonymous data across our entire customer base. This, in combination with our
+**data-efficient sampling algorithms**, results in **30-40% improvement** in experiment convergence over traditional AB/n
+experiments.
+
+<h3> What can you manage using Corrily's experimentation platform? </h3>
+
+Experiments in Corrily can be set-up and managed using our dashboard or the API:
+
+* Defining the experiment objective
+* Managing control and experiment treatments
+* Orchestrating experiments i.e. traffic allocation, adding and disabling particular experiment treatments
+* Measuring experiment results across most common metrics such as ARPU, LTV, Conversion, Retention, MRR, ARR etc.
+* Calculating statistical significance and Confidence Intervals
+* Post-experiment clean-up
+* Rolling out winning experiment treatments
+
+<h3> Different types of Experiments in Corrily </h3>
+
+Corrily's Experimentation platform allows you to run various kinds of experiments.
+
+* **Pricing Experiments:** to find the best price for a set of users. Pricing experiments can be used to test different price
+points, different strikethrough prices, as well as price formatting i.e. price rounding strategies and currencies shown
+* **Packaging Experiment:** to find the best combination of products and plans for a set of users. Packaging experiments
+can also be used to test things such as copy variations for a product, different trial length etc.
+* **Discount Experiments:** to find the optimal discount for a set of users. Discount experiments can be used to test optimal
+discount percentages or amounts  or coupons
+
+<h3> Things to know before setting up an experiment </h3>
+
+A few things to note while running an experiment with Corrily:
+* **Experiment Objective:** Corrily supports various experiment objectives that you can choose from, such as
+Optimizing ARPU, LTV, Conversion or Retention.Make sure you are selecting right experiment objective
+* **Experiment Targeting:** Experiments can be run on a subset of products, countries and audiences. We recommend spending
+some time thinking through the experiment architecture, especially if you plan on running multiple experiments. At Corrily, our
+pricing and Data Science experts are more than happy to consult.
+* **Experiment States:** An experiment can have multiple states: `Draft`, `Ongoing`, `In Review`,`Paused` `Completed`. You can
+set-up an experiment in the `Draft` state, submit it for `Review` before going live. Once an experiment is live, you can decide
+to `Pause` an experiment (say during critical business periods), and `Resume` it later. Experiments can move to a `Completed`
+state when they reach desired statistical significance, or can be forced to end subjectively
+* **Traffic Allocation:** Experiment traffic allocation can be manual or dynamic i.e. optimized automatically by Corrily's machine
+learning models
+* An experiment in Corrily does not necessarily need to have a control group

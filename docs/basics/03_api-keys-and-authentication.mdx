@@ -1,0 +1,31 @@
+---
+title: "API Keys & Authentication"
+description: "How to authenticate different parts of Corrily."
+---
+
+An API key is needed when calling Corrily's API. API keys can be obtained from the `Resources` tab of the Dashboard. To
+use an API key, just pass it using the `X-Api-Key` custom header field when sending a request.
+
+For example, to fetch a price for a user you can use the cURL request below (notice where the API key goes):
+
+```
+curl --location --request POST 'https://default.corrily.com/mainapi/v1/prices' \
+--header 'X-Api-Key: <YOUR_API_KEY>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "country": "US",
+    "user_id": "bob",
+    "products": [
+        "monthly",
+    ],
+}'
+```
+
+## Generating a new API key
+
+[TBA]
+
+## Private API keys
+
+[TBA]
+

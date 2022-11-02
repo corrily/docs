@@ -1,0 +1,21 @@
+---
+title: "Receiving Revenue Events"
+description: "Integrating payment gateways and subscription management services to receive revenue events."
+---
+
+For Corrily to run experiments and serve analytics it needs to receive information about **revenue events** these in include: charge events and, in the case of
+subscription products, subscription events too.
+
+There two ways to go about this:
+- **Via webhook**: where your payment gateway or subscription management service sends event data directly
+to Corrily's servers that parse it and join in to the user-level features, prices, and other metadata collected through
+Corrily's APIs. Supported services include:
+    - Stripe
+    - Recurly
+    - Chargebee
+    - Braintree
+    - Adyen
+- Through the **custom integration API**: where you send key revenue events to our custom integration endpoints.
+
+
+
