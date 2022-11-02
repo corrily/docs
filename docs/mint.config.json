@@ -114,7 +114,8 @@
     {
       "group": "Security and Privacy",
       "pages": [
-        "security_privacy/00_GDPR"
+        "security_privacy/01_GDPR",
+        "security_privacy/00_security_compliance"
       ]
     },
     {
