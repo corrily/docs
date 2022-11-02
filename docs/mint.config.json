@@ -114,7 +114,7 @@
     {
       "group": "Security and Privacy",
       "pages": [
-        "security_privacy/00_GDPR.mdx"
+        "security_privacy/00_GDPR"
       ]
     },
     {
