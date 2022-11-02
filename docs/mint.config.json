@@ -34,7 +34,6 @@
       "group": "Basics",
       "pages": [
         "basics/01_what-is-corrily",
-        "basics/02_quickstart-guide",
         "basics/03_api-keys-and-authentication"
       ]
     },
@@ -44,9 +43,7 @@
         "setup/01_configure-products",
         "setup/02_set-prices",
         "setup/03a_charging-users-corrily-prices",
-        "setup/03b_integrate-payment-gateways",
-        "setup/04_launch-checklist",
-        "setup/05_monitoring"
+        "setup/03b_integrate-payment-gateways"
       ]
     },
     {
@@ -90,8 +87,7 @@
         "experiments/01_price_experiments",
         "experiments/02_packaging_experiments",
         "experiments/03_experiment_design",
-        "experiments/04_experiment_analytics",
-        "experiments/05_recommendation_engine"
+        "experiments/04_experiment_analytics"
       ]
     },
     {
@@ -105,10 +101,7 @@
       "group": "Integration Guides",
       "pages": [
         "integrations/00_web-revenue-events-webhook",
-        "integrations/01_custom-web-integration",
-        "integrations/02_apple-app-store",
-        "integrations/03_google-play-store",
-        "integrations/04_mapping-products"
+        "integrations/01_custom-web-integration"
       ]
     },
     {
