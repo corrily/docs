@@ -28,13 +28,14 @@ is set-up properly:
 
 - Gather what your **base price for the products** are - these would be default prices that you want to serve for your product
 
-- Gather your existing FX rates if you are converting prices
+- Gather your **existing FX rates** if you are converting prices from your base currency to local currencies
 
 - Identify and **integrate Corrily API on all of your pricing interfaces** for a consistent user experience
 
 - **Backfill old users** who Corrily doesn't know about. While this is an optional step, it helps Corrily's models learn faster
 and also make sure that we can lock the prices for your existing paying user base. This can be alternatively achieved by letting
 Corrily know while calling our API when a particular user is an old user, or explicitly asking a user to be excluded from an experiment
+
 
 
 ## Prepare your product information
@@ -60,13 +61,13 @@ Example:
 | Annual Plan          | 60               | Year                | annual_plan   | True  |
 | Lifetime Plan        | 600              | One-Off             | lifetime_plan | False |
 
-## Email Corrily
-
-Email [api@corrily.com](mailto:api@corrily.com) the product information that you prepared in the previous section. The Corrily team will reply with your API key and product ID(s).
 
 ## Notify Corrily of payment gateway events
 
-As explained in [Price optimization overview](../pricing/price-optimization-overview), Corrily needs to be notified of subscription and charge events if you're doing price experimentation. The easiest way is through OAuth and just requires 2 clicks. After access is granted, your payment gateway automatically notifies Corrily of subscription and charge events. Otherwise you can [manually notify Corrily](../payment-gateways/integration-guide#manually-notify-corrily-of-subscription-and-charge-events).
+As explained in [Price optimization overview](../pricing/price-optimization-overview), Corrily needs to be notified of subscription
+and charge events if you're doing price experimentation. The easiest way is through OAuth and just requires 2 clicks.
+After access is granted, your payment gateway automatically notifies Corrily of subscription and charge events.
+Otherwise you can [manually notify Corrily](../payment-gateways/integration-guide#manually-notify-corrily-of-subscription-and-charge-events).
 
 If you're using Stripe and would like to get your Corrily integration started now, click the **Connect with Stripe** button to grant Corrily read-only access to your Stripe subscription and charge events.
 
