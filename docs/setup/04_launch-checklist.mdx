@@ -41,10 +41,16 @@ are charging users in. Upload this information to Corrily using a CSV.
 and also make sure that we can lock the prices for your existing paying user base. This can be alternatively achieved by letting
 Corrily know while calling our API when a particular user is an old user, or explicitly asking a user to be excluded from an experiment
 
-- Integrate Corrily in a staging or sandbox environment and test with a few user accounts to ensure prices are being served
+- Integrate Corrily in a **staging or sandbox environment** and test with a few user accounts to ensure prices are being served
 correctly.
-    **TIP: Test with a different IPs, and user account (old and new) to check all users would the expected price.
+    **TIP**: Test your pricing interface with a few anonymous/unauthenticated visits using different IPs, as well as different
+    logged-in user accounts (old and new) to smoke-test the expected prices. Corrily can also create a staging set-up for
+    your organization at our end.
 
+- **Start small** with ~1-2% of your traffic on Day 1, monitor for a day, and if everything looks good - open the flood-gates to
+100% of your traffic
+
+- Once integrated and live, you are all set to run experiments on our platform.
 
 ## Prepare your product information
 
