@@ -19,23 +19,27 @@ Email [api@corrily.com](mailto:api@corrily.com) to check if we already have an A
 Before you show prices on your pricing interfaces using Corrily, please review this launch checklist to make sure everything
 is set-up properly:
 
-- Create Corrily products for every product that you wish to integrate with us.
+- Create Corrily products for every product that you wish to integrate with us. If you have a large catalog of products,
+we recommend using a CSV file to upload this to Corrily, otherwise you can easily create these on our dashboard.
 
     **Tip:** If you have created redundant products in the past on your subscription management or commerce platform in
     order to experiment with different prices or simply serve your product in different currencies, Corrily can help you simplify this.
     Since Corrily can serve a product across diffeernt prices and currencies, we often find our customers abstracting that
     complexity over to Corrily
 
-- Gather what your **base price for the products** are - these would be default prices that you want to serve for your product
+- Gather what your **base price for the products** are - these would be default prices that you want to serve for your product.
+You can send this info to Corrily using a CSV while uploading products or use the dashboard.
 
-- Gather your **existing FX rates** if you are converting prices from your base currency to local currencies
+- Gather your master pricing sheet. Usually your pricing team will have a list of country prices and what currency you are charging users in.
+Upload this information to Corrily using a CSV.
+
+- Gather your **existing FX rates** if you are converting prices from your base currency to local currencies.
 
 - Identify and **integrate Corrily API on all of your pricing interfaces** for a consistent user experience
 
 - **Backfill old users** who Corrily doesn't know about. While this is an optional step, it helps Corrily's models learn faster
 and also make sure that we can lock the prices for your existing paying user base. This can be alternatively achieved by letting
 Corrily know while calling our API when a particular user is an old user, or explicitly asking a user to be excluded from an experiment
-
 
 
 ## Prepare your product information
