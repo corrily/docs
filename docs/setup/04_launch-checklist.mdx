@@ -9,17 +9,44 @@ This guide explains how to get a Corrily API key and product IDs.
 
 <h3>You might already have an API key</h3>
 
-If you have already had a Corrily [demo](https://calendly.com/corrily/demo-call?month=2021-08) we have probably already set up an API key and list of products for you (based on what we've seen on your pricing page). Email [api@corrily.com](mailto:api@corrily.com) to check if we already have an API key and product ID(s) for you.
+If you have already had a Corrily [demo](https://calendly.com/corrily/demo-call?month=2021-08) we have probably already
+set up an API key and list of products for you (based on what we've seen on your pricing page).
+Email [api@corrily.com](mailto:api@corrily.com) to check if we already have an API key and product ID(s) for you.
 
 </Info>
+
+
+Before you show prices on your pricing interfaces using Corrily, please review this launch checklist to make sure everything
+is set-up properly:
+
+- Create Corrily products for every product that you wish to integrate with us.
+
+    **Tip:** If you have created redundant products in the past on your subscription management or commerce platform in
+    order to experiment with different prices or simply serve your product in different currencies, Corrily can help you simplify this.
+    Since Corrily can serve a product across diffeernt prices and currencies, we often find our customers abstracting that
+    complexity over to Corrily
+
+- Gather what your **base price for the products** are - these would be default prices that you want to serve for your product
+
+- Gather your existing FX rates if you are converting prices
+
+- Identify and **integrate Corrily API on all of your pricing interfaces** for a consistent user experience
+
+- **Backfill old users** who Corrily doesn't know about. While this is an optional step, it helps Corrily's models learn faster
+and also make sure that we can lock the prices for your existing paying user base. This can be alternatively achieved by letting
+Corrily know while calling our API when a particular user is an old user, or explicitly asking a user to be excluded from an experiment
+
 
 ## Prepare your product information
 
 Gather the following information about your product/service:
 
 - **Product name**: A human-readable, descriptive name for the product/service
-- **Base price (USD)**: The default price of your product/service
-- **Recurrence interval**: How frequently the product/service is charged (e.g. `Month`, `Year`, or `One-Off`)
+- **Base price(USD)**: The default price of your product. Currently, Corrily only supports USD but will soon be supporting
+other currencies
+- **Recurring Interval:** What's the recurrence interval for your product (e.g. `Monthly`, `Yearly`, or `One time`)
+- **Interval Frequency:** How frequently the product/service is charged for e.g a product with a `monthly` interval, and interval
+count of 3 means that you are charging users every 3 months.
 - **API ID**: The identifier that you'll provide when calling Corrily's REST API endpoints
 - **Cents**: Whether you display your price with cents or not (e.g. $20 or $19.99)
 
