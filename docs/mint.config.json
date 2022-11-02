@@ -104,16 +104,11 @@
     {
       "group": "Integration Guides",
       "pages": [
-        "integrations/01_payment-gateways",
-        "integrations/02_stripe",
-        "integrations/03_chargebee",
-        "integrations/04_recurly",
-        "integrations/05_braintree",
-        "integrations/06_adyen",
-        "integrations/07_paypal",
-        "integrations/08_custom-integration",
-        "integrations/09_apple-app-store",
-        "integrations/10_google-play-store"
+        "integrations/00_web-revenue-events-webhook",
+        "integrations/01_custom-web-integration",
+        "integrations/02_apple-app-store",
+        "integrations/03_google-play-store",
+        "integrations/04_mapping-products"
       ]
     },
     {

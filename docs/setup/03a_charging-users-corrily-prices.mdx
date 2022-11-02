@@ -13,9 +13,9 @@ When integrating with web payment gateways or subscription management services t
 a price override. Users are still subscribed to the same plan or purchase the same product, but with a custom price different
 to the gateway-defined base price.
 
-Corrily provides the exact amounts and currencies you should charge in its [integration objects](http://localhost:3000/api-reference/calculate-price#body-params) field.
+Corrily provides the exact amounts and currencies you should charge in the `product.integrations` field of its [response](api-reference/calculate-price#response).
 
-You can read more about how price overrides work in different platforms:
+You can read more about how price overrides work in different services:
 - Stripe (via [payment intents](https://stripe.com/docs/payments/payment-intents#best-practices),
 [subscription creation](https://stripe.com/docs/api/subscriptions/object#subscription_object-items-data-price-custom_unit_amount),
 or [checkout sessions](https://stripe.com/docs/api/checkout/sessions/create#create_checkout_session-line_items-price_data-unit_amount)
@@ -26,3 +26,13 @@ or [checkout sessions](https://stripe.com/docs/api/checkout/sessions/create#crea
 
 
 ### Mobile
+
+Charging prices on mobile is different from the web in that mobile prices (in-app products in both Google and Apple) cannot be overriden. A mobile in-app purchase
+product has a fixed price (or fixed set of prices across countries) that cannot be easily changed. As a result, to be able
+to charge audience or experimental prices on mobile, new products at different price points need to be introduced.
+
+As an example say you hand a monthly product `monthly` and wanted to charge students at half the price you charge normal
+users as well as run an experiment to see whether your baseline `monthly` products works best at the current price, half the price,
+or 1.5x the price. In that case you would need to create two additional products `monthly_0.5` and `monthly_1.5`. You could
+then rely on Corrily's segmentation logic to show select groups, such as the students, the `monthly_0.5` price and on Corrily's
+experimentation logic to study whether `monthly_0.5`, `monthly`, or `monthly_1.5` price points work best.
