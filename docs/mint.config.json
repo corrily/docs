@@ -112,6 +112,12 @@
       ]
     },
     {
+      "group": "Security and Privacy",
+      "pages": [
+        "security_privacy/00_GDPR.mdx"
+      ]
+    },
+    {
       "group": "Prices",
       "pages": ["api-reference/calculate-price"]
     },
