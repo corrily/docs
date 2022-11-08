@@ -26,14 +26,14 @@ As explained in [Price optimization overview](../pricing/price-optimization-over
 Experimental prices are affected by the following factors:
 
 - The (potential) customer's location, which is inferred from their IP address
-- Any [user characteristics](../users/user-characteristics) that you have provided
+- Any [user features](../users/02_user-features) that you have provided
 - The outcomes of previous price experiments
 - The upper and lower bounds that you defined in the Corrily Dashboard
 
 ## Body Params
 
 <ParamField body="user_id" type="string">
-  A [User ID](../users/user-ids). Only required if no `ip` is provided and
+  A [User ID](../users/01_users). Only required if no `ip` is provided and
   `get_ip_from_request` is `false`.
 </ParamField>
 
@@ -67,7 +67,7 @@ Experimental prices are affected by the following factors:
 </ParamField>
 
 <ParamField body="features" type="object">
-An object containing key-value pairs of arbitrary strings that represent characteristics of this user which may affect their optimal price. See [User characteristics](). Example: `{"platform": "ios"}`
+An object containing key-value pairs of arbitrary strings that represent features of this user which may affect their optimal price. See [User features](../users/02_user-features). Example: `{"platform": "ios"}`
 </ParamField>
 
 <ParamField body="integrations" type="[string]">

@@ -87,7 +87,8 @@
         "experiments/01_price_experiments",
         "experiments/02_packaging_experiments",
         "experiments/03_experiment_design",
-        "experiments/04_experiment_analytics"
+        "experiments/04_experiment_analytics",
+        "experiments/05_recommendation_engine"
       ]
     },
     {
@@ -102,7 +103,8 @@
       "pages": [
         "integrations/00_revenue-events-webhook",
         "integrations/01_custom-integration",
-        "integrations/02_apple-iap-integration"
+        "integrations/02_apple-iap-integration",
+        "integrations/03_google-iap-integration"
       ]
     },
     {
