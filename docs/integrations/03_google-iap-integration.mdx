@@ -1,0 +1,22 @@
+---
+title: "Google Play Store"
+description: "Google Play Store integration guide."
+---
+
+Corrily needs a way of detecting revenue events coming in from various in-app purchase types. In each case Corrily needs
+to be informed of any charge and subscription events relating to products being experimented on.
+
+### Using Corrily's custom integration endpoints
+
+If you already have a central location that handles subscriptions and charge events you can let Corrily know about them
+using our [Custom Integration Guide](integrations/01_custom-integration).
+
+### Letting Corrily handle server-to-server events
+
+Alternatively, you can point link your [Google Play Store real-time developer notifications](https://help.apple.com/app-store-connect/#/dev0067a330b) with Corrily
+and let us handle Play Store revenue events for you.
+
+However, you will have to call our identify endpoint and pass us a `purchaseToken` on product purchase from within
+the application so we can correctly tie the user to the Play Store notifications.
+
+

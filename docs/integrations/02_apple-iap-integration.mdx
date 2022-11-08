@@ -1,0 +1,23 @@
+---
+title: "Apple App Store"
+description: "Apple IAP integration guide."
+---
+
+Corrily needs a way of detecting revenue events coming in from various in-app purchase types (consumables, non-consumables,
+auto-renewable subscriptions, or non-renewing subscriptions). In each case Corrily needs to be informed of any charge
+and subscription events relating to products being experimented on.
+
+### Using Corrily's custom integration endpoints
+
+If you already have a central location that handles subscriptions and charge events you can let Corrily know about them
+using our [Custom Integration Guide](integrations/01_custom-integration).
+
+### Letting Corrily handle server-to-server events
+
+Alternatively, you can point your [App Store Server Notifications](https://help.apple.com/app-store-connect/#/dev0067a330b) to Corrily's
+endpoint [and let Corrily handle](integrations/00_revenue-events-webhook) App Store revenue events for you.
+
+However, you will have to call our identify endpoint and pass us a `original_transaction_id` on product purchase from within
+the application so we can correctly tie the user to the App Store notifications.
+
+

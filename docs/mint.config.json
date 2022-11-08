@@ -100,8 +100,9 @@
     {
       "group": "Integration Guides",
       "pages": [
-        "integrations/00_web-revenue-events-webhook",
-        "integrations/01_custom-web-integration"
+        "integrations/00_revenue-events-webhook",
+        "integrations/01_custom-integration",
+        "integrations/02_apple-iap-integration"
       ]
     },
     {
