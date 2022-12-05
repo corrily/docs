@@ -1,7 +1,7 @@
 ---
 title: "Create subscription"
 description: "Notify Corrily that one of your customers has started a subscription."
-api: "POST https://client.corrily.com/v1/subscriptions"
+api: "POST https://default.corrily.com/v1/subscriptions"
 ---
 
 <Warning>
@@ -124,7 +124,7 @@ to your payment gateway's subscription and charge events.
 <RequestExample>
 ```bash Bash
 curl --request POST \
-   --url https://client.corrily.com/v1/subscriptions \
+   --url https://default.corrily.com/v1/subscriptions \
    --header 'Accept: application/json' \
    --header 'Content-Type: application/json' \
    --data '
@@ -149,7 +149,7 @@ curl --request POST \
 ```js Node
 const fetch = require("node-fetch");
 
-const url = "https://client.corrily.com/v1/subscriptions";
+const url = "https://default.corrily.com/v1/subscriptions";
 const options = {
   method: "POST",
   headers: { Accept: "application/json", "Content-Type": "application/json" },
@@ -179,7 +179,7 @@ fetch(url, options)
 ```python Python
 import requests
 
-url = "https://client.corrily.com/v1/subscriptions"
+url = "https://default.corrily.com/v1/subscriptions"
 
 payload = {
     "amount": 0,

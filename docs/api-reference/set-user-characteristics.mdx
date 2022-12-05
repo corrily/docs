@@ -1,7 +1,7 @@
 ---
 title: "Identify Call"
 description: "Link IPs to users and update user features."
-api: "POST https://client.corrily.com/v1/identify"
+api: "POST https://default.corrily.com/v1/identify"
 ---
 
 The identify endpoint serves three purposes:
@@ -41,7 +41,7 @@ The identify endpoint serves three purposes:
 <RequestExample>
 ```bash Bash
 curl --request POST \
-     --url https://client.corrily.com/v1/identify \
+     --url https://default.corrily.com/v1/identify \
      --header 'Accept: application/json' \
      --header 'Content-Type: application/json' \
      --data '{ user_id: "string", features: {source: "youtube"} }'
@@ -50,7 +50,7 @@ curl --request POST \
 ```js Node
 const fetch = require("node-fetch");
 
-const url = "https://client.corrily.com/v1/identify";
+const url = "https://default.corrily.com/v1/identify";
 const options = {
   method: "POST",
   headers: { Accept: "application/json", "Content-Type": "application/json" },
@@ -66,7 +66,7 @@ fetch(url, options)
 ```python Python
 import requests
 
-url = "https://client.corrily.com/v1/identify"
+url = "https://default.corrily.com/v1/identify"
 
 payload = { "user_id": "test_user", "features": {"source": "youtube"} }
 headers = {

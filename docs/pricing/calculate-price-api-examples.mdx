@@ -38,7 +38,7 @@ app.get('/', async (request, response) => {
  ip,
  user_id
  },
- url: 'https://client.corrily.com/v1/prices'
+ url: 'https://default.corrily.com/v1/prices'
  });
  return response.json(result.data);
 });
@@ -93,7 +93,7 @@ const options = {
   redirect: "follow",
 };
 
-fetch("https://client.corrily.com/v1/prices", options)
+fetch("https://default.corrily.com/v1/prices", options)
   .then((response) => response.json())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -108,7 +108,7 @@ import random
 import json
 import uuid
 
-url = 'https://client.corrily.com/v1/prices'
+url = 'https://default.corrily.com/v1/prices'
 
 headers = {
    # Make sure that the payload is set to JSON, not form encoded.
@@ -173,7 +173,7 @@ const options = {
   redirect: "follow",
 };
 
-fetch("https://client.corrily.com/v1/prices", options)
+fetch("https://default.corrily.com/v1/prices", options)
   .then((response) => response.json())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -202,7 +202,7 @@ async function calculatePrice() {
       country: "JP",
       user_id: uuidv4(),
     },
-    url: "https://client.corrily.com/v1/prices",
+    url: "https://default.corrily.com/v1/prices",
   });
   console.log(result.data);
 }

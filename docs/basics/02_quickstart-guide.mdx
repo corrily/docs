@@ -98,7 +98,7 @@ const options = {
   redirect: "follow",
 };
 
-fetch("https://client.corrily.com/v1/prices", options)
+fetch("https://default.corrily.com/v1/prices", options)
   .then((response) => response.json())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -136,7 +136,7 @@ const options = {
   redirect: "follow",
 };
 
-fetch("https://client.corrily.com/v1/prices", options)
+fetch("https://default.corrily.com/v1/prices", options)
   .then((response) => response.json())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));

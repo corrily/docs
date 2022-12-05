@@ -1,7 +1,7 @@
 ---
 title: "Update subscription"
 description: "Notify Corrily that a subscription has changed."
-api: "POST https://client.corrily.com/v1/subscriptions/{user_id}/{origin}/{origin_id}"
+api: "POST https://default.corrily.com/v1/subscriptions/{user_id}/{origin}/{origin_id}"
 ---
 
 <Warning>
@@ -114,7 +114,7 @@ You do not need to use this endpoint if you have [granted Corrily automated acce
 
 ```bash Bash
 curl --request POST \
-     --url https://client.corrily.com/v1/subscriptions/user_id/origin/origin_id \
+     --url https://default.corrily.com/v1/subscriptions/user_id/origin/origin_id \
      --header 'Accept: application/json' \
      --header 'Content-Type: application/json' \
      --data '
@@ -135,7 +135,7 @@ curl --request POST \
 const fetch = require("node-fetch");
 
 const url =
-  "https://client.corrily.com/v1/subscriptions/user_id/origin/origin_id";
+  "https://default.corrily.com/v1/subscriptions/user_id/origin/origin_id";
 const options = {
   method: "POST",
   headers: { Accept: "application/json", "Content-Type": "application/json" },
@@ -160,7 +160,7 @@ fetch(url, options)
 ```python Python
 import requests
 
-url = "https://client.corrily.com/v1/subscriptions/user_id/origin/origin_id"
+url = "https://default.corrily.com/v1/subscriptions/user_id/origin/origin_id"
 
 payload = {
     "amount": 0,
